@@ -4,11 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-//fuck you cunt face
+//ballsbags
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
+//smallsbags
 var app = express();
 
 // view engine setup
