@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>cunt slabs</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Signin CSS -->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+<h1 style="{display: inline-block}">hey cunt</h1>
+<button id="showMenu" type="button" class="btn btn-default" aria-label="Left Align">
+    <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+</button>
+<div id="mainMenu" class="hidden">
+    <ul class="nav nav-pills nav-stacked">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="notice">News</a></li>
+        <li><a href="index.ejs">Videos</a></li>
+
+        <li><a href="index.ejs">Training</a></li>
+        <li><a href="index.ejs">Go Live</a></li>
+        <li><a href="index.ejs">Contact/Feedback</a></li>
+
+    </ul>
+</div>
+</body>
+<script>
+
+ $('#showMenu').click(function(){
+     if($('#mainMenu').hasClass('hidden')){
+         $('#mainMenu').removeClass('hidden').addClass('visible');
+         $('#mainMenu').animate({left: '0'}, 1000);
+     }else{
+         $('#mainMenu').animate({left: '-200px'}, 1000);
+         setTimeout( function(){
+             $('#mainMenu').removeClass('visible').addClass('hidden');
+         }, 1000);
+     }
+ });
+
+</script>
+</html>
