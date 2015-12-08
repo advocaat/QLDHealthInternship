@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var c = require('appcache-node');
 //ballsbags
 
 var routes = require('./routes/index');
@@ -11,6 +12,7 @@ var routes = require('./routes/index');
 //smallsbags
 var app = express();
 
+var cf = new c.newCache();
 
 
 // view engine setup

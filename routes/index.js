@@ -26,7 +26,6 @@ router.get('/notice', function(req, res, next) {
         console.log("slutbird " + JSON.stringify(myDocs[0]));
         res.render('notice', {myArray : myDocs});
     });
-
 });
 
 
