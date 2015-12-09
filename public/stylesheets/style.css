@@ -3,6 +3,12 @@ body {
   padding: 0;
   font: 35px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+.link{
+  color: rgb(54, 81, 237);
+}
+.link:visited{
+  color: rgb(54, 81, 237);
+}
 
 a:link {
   color: rgb(203,223,237);
@@ -11,6 +17,7 @@ a:visited{
   color: rgb(203,223,237);
 
 }
+
 .color{
   background-color: rgb(31, 73, 125);
 }
@@ -69,31 +76,98 @@ a:visited{
 #header button{
   background-color: rgb(31, 73, 125);
 }
+
+#aboutUs{
+  margin-left: 3%;
+  margin-right: 3%;
+  padding: 3%;
+
+}
+
 #newsPanel {
-  margin-left: 1%;
+  margin-left: 3%;
   margin-right: 3%;
-  width: 100%;
-
-
+  padding-left: 2%;
+  padding-right: 2%;
 
 }
+.carousel-caption a{
+  bottom: 0;
+  top: auto;
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke-color: black;
+}
+
 #myCarousel{
-  position: absolute;
+  position: relative;
+  margin-bottom: 5%;
 }
+
 #newsTitle{
-  margin-left: 2%;
-  margin-right: 3%;
-
-
-}
-#newsContent{
   margin-left: 3%;
   margin-right: 3%;
 
 }
+
+#newsContent{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+#newsContentPara{
+  margin-left: 3%;
+  margin-right: 3%;
+  maxlength: '50';
+}
+
 #newsAuthor{
   margin-left: 3%;
   margin-right: 3%;
 
+}
 
+#newsButton{
+  width: 100%;
+  font-size: 15px;
+  height: 8%;
+  margin-top: 2%;
+  position: relative;
+  text-align: left;
+  background-color: rgb(203,223,237);
+
+}
+
+#homePageContainer{
+  width: 100%;
+  height: 9%;
+  margin-top: 5%;
+  background-color: rgb(31, 73, 125);
+  position: relative;
+}
+
+#homePageContainerTitle{
+  padding: 2%;
+  color: white;
+  margin-bottom: -1%;
+}
+
+#aboutUsImg{
+  margin-top: 1%;
+  width: 85%;
+}
+
+#directionIcons{
+  float: right;
+}
+
+#contactInfo {
+  margin-left: 3%;
+}
+
+#smallFrame{
+  max-width: 320px;
+  max-height: 240px;
+  min-width: 320px;
+  min-height: 240px;
+  object-fit: fill;
 }

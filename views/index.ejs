@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
 
-    <!-- bxSlider Javascript file -->
-    <script src="../js/jquery.bxslider.min.js"></script>
-    <!-- bxSlider CSS file -->
-    <link href="../lib/jquery.bxslider.css" rel="stylesheet" />
+
 
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <!-- Latest compiled and minified CSS -->
@@ -28,40 +25,56 @@
     <img id="title" src="/HOMEbanner.png" height="13%" />
 </div>
 
-<div id="mainMenu" class="hidden color">
+<div id="mainMenu" class="hidden">
 
     <ul class="nav nav-stacked">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="about">About</a></li>
         <li><a href="notice">News</a></li>
-        <li><a href="index.ejs">Videos</a></li>
-        <li><a href="index.ejs">Training</a></li>
+        <li><a href="video">Videos</a></li>
+        <li><a href="trainning">Training</a></li>
         <li><a href="index.ejs">Go Live</a></li>
-        <li><a href="index.ejs">Contact/Feedback</a></li>
+        <li><a href="contact">Contact/Feedback</a></li>
     </ul>
 
 </div>
-<div id="outer-space">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
-
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="/1.jpg" alt="Chania">
+                <img src="/images/1.jpg" alt="Qld Health">
+                <div class="carousel-caption">
+                    <h3>New Construction </h3>
+                    <h4 id="featureLinks"><a href="http://www.google.com.au"> See More</a></h4>
+                </div>
             </div>
 
             <div class="item">
-                <img src="/2.jpg" alt="Chania">
+                <img src="/images/2.jpg" alt="Chania">
+                <div class="carousel-caption">
+                    <h3>Welcome to Cairns </h3>
+                    <h4 id="featureLinks"><a href="http://www.google.com.au"> See More</a></h4>
+                </div>
             </div>
 
             <div class="item">
-                <img src="/3.jpg" alt="Flower">
+                <img src="/images/3.png" alt="Flower">
+                <div class="carousel-caption">
+                    <h3>General meeting </h3>
+                    <h4 id="featureLinks"><a href="http://www.google.com.au"> See More</a></h4>
+                </div>
+
             </div>
 
             <div class="item">
-                <img src="/4.jpg" alt="Flower">
+                <img src="/images/4.jpg" alt="Flower">
+                <div class="carousel-caption">
+
+                    <h3>Medication </h3>
+                    <h4 id="featureLinks"><a href="http://www.google.com.au"> See More</a></h4>
+                </div>
             </div>
         </div>
 
@@ -75,14 +88,37 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-</div>
 
+<hr style="color:black;" />
+<div id="homePageContainer">
+    <center><h3 id="homePageContainerTitle">
+            Quick Reference Guide
+        </h3></center>
+</div>
+<button type="button" id="newsButton" class="btn btn-default" >Training Manuals
+    <span id="directionIcons" class="glyphicon glyphicon-menu-right" aria-hidden="true" ></span>
+</button>
+<button type="button" id="newsButton" class="btn btn-default" >Clinical updates
+    <span id="directionIcons" class="glyphicon glyphicon-menu-right" aria-hidden="true" ></span>
+</button>
+<button type="button" id="newsButton" class="btn btn-default" >Practice Labs
+    <span id="directionIcons" class="glyphicon glyphicon-menu-right" aria-hidden="true" ></span>
+</button>
+<button type="button" id="newsButton" class="btn btn-default" >Practical Activities
+    <span id="directionIcons" class="glyphicon glyphicon-menu-right" aria-hidden="true" ></span>
+</button>
+<button type="button" id="newsButton" class="btn btn-default" style="margin-bottom: 4%;">Support
+    <span id="directionIcons" class="glyphicon glyphicon-menu-right" aria-hidden="true" ></span>
+</button>
+<hr/>
+<center><img src="/images/QLDHealth.jpg" id="AboutUsImg" alt="Qld Health" class="img-thumbnail"></center>
 </body>
 <script>
 
     $('#showMenu').click(function(){
         if($('#mainMenu').hasClass('hidden')){
             $('#mainMenu').removeClass('hidden').addClass('visible');
+            $('#mainMenu').addClass('color');
             $('#mainMenu').animate({left: '0'}, 1000);
         }else{
             $('#mainMenu').animate({left: '-300px'}, 1000);

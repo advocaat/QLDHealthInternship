@@ -13,27 +13,42 @@ router.get("/manifest.appcache", function (req, res) {
 
 
 router.get('/', function(req, res, next) {
-
         res.render('index');
 
-
 });
-
 
 
 router.get('/notice', function(req, res, next) {
     DAO.pullTable(function(myDocs){
-        console.log("slutbird " + JSON.stringify(myDocs[0]));
+        console.log("IN ROUTE" + JSON.stringify(myDocs[0]));
         res.render('notice', {myArray : myDocs});
     });
 });
 
+router.get('/trainning', function(req, res, next) {
+    res.render('trainning');
+});
 
+router.get('/contact', function(req, res, next) {
+    res.render('contact');
+});
+
+router.get('/about', function(req, res, next) {
+    res.render('about');
+});
 
 
 router.get('/upload', function(req, res, next) {
     res.render('upload');
 });
+
+router.get('/video', function(req, res, next){
+    DAO.pullVids(function(myDocs){
+
+        res.render('viewer', {myArray : myDocs});
+    });
+});
+
 
 router.post('/upload', function(req, res){
   var form = new formidable.IncomingForm();
@@ -45,7 +60,6 @@ router.post('/upload', function(req, res){
       res.redirect('/');
   })
 });
-
 
 
 module.exports = router;

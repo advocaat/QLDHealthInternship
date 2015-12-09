@@ -1,0 +1,84 @@
+<html>
+<head>
+    <title>About page</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Signin CSS -->
+</head>
+<body>
+<div id="header">
+    <button id="showMenu" type="button" class="btn btn-default" aria-label="Left Align">
+        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+    </button>
+    <h1 id="title">About</h1>
+
+</div>
+
+
+<div id="mainMenu" class="hidden">
+    <ul class="nav nav-stacked">
+        <li><a href="/">Home</a></li>
+        <li><a href="about">About</a></li>
+        <li><a href="notice">News</a></li>
+        <li><a href="video">Videos</a></li>
+        <li><a href="trainning">Training</a></li>
+        <li><a href="index.ejs">Go Live</a></li>
+        <li><a href="contact">Contact/Feedback</a></li>
+    </ul>
+
+</div>
+
+<div id="aboutUs">
+    <h3>About</h3>
+    <p>Researchers from the George Institute for Global Health in Sydney found sending simple texts such as "Don't
+        forget physical activity is good for you!" could motivate patients to improve their health.
+        <br/>
+        <br/>
+        After receiving four texts a week for six months, patients significantly lowered their cholesterol, blood
+        pressure and body mass index.
+        <br/>
+        <br/>
+
+        Associate Professor Clara Chow from the institute said the approach had the potential to prevent second heart
+        attacks and save thousands of lives.
+        <br/>
+        <br/>
+        "Around 55,000 Australians go to hospital with a heart attack every year and around one third of those are
+        repeat heart attacks," she said.
+    </p>
+
+    <a href="http://www.health.qld.gov.au" class="link">Click for more information</a>
+    <p></p>
+
+    <center><img src="/images/QLDHealth.jpg" id="AboutUsImg" alt="Qld Health" class="img-thumbnail"></center>
+</div>
+</body>
+
+<script>
+
+    $('#showMenu').click(function () {
+        if ($('#mainMenu').hasClass('hidden')) {
+            $('#mainMenu').removeClass('hidden').addClass('visible');
+            $('#mainMenu').addClass('color');
+            $('#mainMenu').animate({left: '0'}, 1000);
+        } else {
+            $('#mainMenu').animate({left: '-300px'}, 1000);
+            setTimeout(function () {
+                $('#mainMenu').removeClass('visible').addClass('hidden');
+            }, 1000);
+        }
+    });
+
+</script>
+
+
+</html>

@@ -1,14 +1,22 @@
 CACHE MANIFEST
-#2
+#20
 
 CACHE:
 https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js
 https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css
-https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css
 https://code.jquery.com/jquery-1.11.3.min.js
+https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.min.js
+https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.min.css
 /favicon.ico
 /stylesheets/style.css
-
+/images/1.jpg
+/images/2.jpg
+/images/3.jpg
+/images/4.jpg
+/images/1387949558756.jpg
+/images/HOMEbanner.png
+/images/logo.png
 
 NETWORK:
 *

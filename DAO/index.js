@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Notice = require('../models/Notice');
-
+var Video = require('../models/Video');
 
 var functions = {};
 
@@ -34,6 +34,16 @@ functions.pullTable = function(callback){
             throw err;
         }
         callback(notices);
+    });
+};
+
+functions.pullVids = function(callback){
+    Video.find({}, function(err, videos){
+        if(err){
+            throw err;
+        }
+        console.log("YOURE HERE");
+        callback(videos)
     });
 };
 
