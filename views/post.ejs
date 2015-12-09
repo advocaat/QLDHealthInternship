@@ -1,10 +1,10 @@
 
 
 <% myArray.forEach(function(obj) { %>
-<div>
-    <h3><%= obj.noticeTitle %></h3>
-    <p><%= obj.noticeContent %></p>
-    <p><i>- <%= obj.noticeAuthor %></i></p>
+<div id="newsPanel">
+    <h3 id="newsTitle"><%= obj.noticeTitle %></h3>
+    <p id="newsContent"><%= obj.noticeContent %></p>
+    <p id="newsAuthor"><i>- <%= obj.noticeAuthor %></i></p>
 </div>
 <hr/>
 <% }); %>

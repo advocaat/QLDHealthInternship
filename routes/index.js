@@ -3,19 +3,19 @@ var router = express.Router();
 var formidable = require('formidable');
 var DAO = require('../DAO');
 var noticeHandler = require('../control/noticeHandler.js');
-var gridder = require('../DAO/gridder');
-/* GET home page. */
 
-//app.get('/*.appcache', function(req, res){
-//  res.header('Content-Type', 'text/cache-manifest');
-//  res.end('CACHE MANIFEST');
-//});
+router.get("/manifest.appcache", function (req, res) {
+    res.set("Content-Type", "text/cache-manifest");
+    res.set("Cache-Control", "no-store, no-cache");
+    res.set("Expires", "-1");
+    res.sendFile("/public/manifest.appcache", {root: __dirname});
+});
 
 
 router.get('/', function(req, res, next) {
 
+        res.render('index');
 
-    res.render('index');
 
 });
 

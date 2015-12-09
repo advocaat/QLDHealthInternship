@@ -4,30 +4,39 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var c = require('appcache-node');
+
 //ballsbags
+
 
 var routes = require('./routes/index');
 
-//smallsbags
+
 var app = express();
 
-var cf = new c.newCache();
-
+//app.get("/manifest.appcache", function (req, res) {
+//  res.set("Content-Type", "text/cache-manifest");
+//  res.set("Cache-Control", "no-store, no-cache");
+//  res.set("Expires", "-1");
+//  res.sendFile("/public/manifest.appcache", {root: __dirname});
+//});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 
+
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname  + "/public/images"));
 
 app.use('/', routes);
+
 
 
 // catch 404 and forward to error handler

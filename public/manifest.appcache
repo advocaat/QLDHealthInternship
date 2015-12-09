@@ -1,0 +1,14 @@
+CACHE MANIFEST
+#2
+
+CACHE:
+https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js
+https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css
+https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+https://code.jquery.com/jquery-1.11.3.min.js
+/favicon.ico
+/stylesheets/style.css
+
+
+NETWORK:
+*

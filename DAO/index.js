@@ -14,9 +14,9 @@ functions.insert = function(tableName, insertObject){
     var timeslimer = new Date().getTime();
     if(tableName === "notices"){
         var newNotice = new Notice();
-        newNotice.noticeAuthor = insertObject.noticeTitle;
+        newNotice.noticeTitle = insertObject.noticeTitle;
         newNotice.noticeContent = insertObject.noticeContent;
-        newNotice.noticeTitle = insertObject.noticeAuthor;
+        newNotice.noticeAuthor = insertObject.noticeAuthor;
         newNotice.noticeTimestamp = timeslimer;
         newNotice.noticeImage = insertObject.noticeImage;
         newNotice.save(function(err){
