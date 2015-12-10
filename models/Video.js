@@ -6,7 +6,8 @@ var videoSchema = new Schema({
     videoTitle: String,
     videoURL: String,
     videoBlurb: String,
-    videoTimestamp: Number
+    videoTimestamp: Number,
+    videoFeatured: Boolean
 });
 var collectionName = "myData";
 

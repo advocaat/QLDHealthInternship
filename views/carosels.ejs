@@ -1,0 +1,25 @@
+<% myVidArray.forEach(function(obj) { %>
+    <div class="item center">
+        <video id="smallFrame" class="embed-responsive-item" src="<%= obj.videoURL %>" type="video/mp4" controls>
+            Somethings Wrong.
+        </video>
+        <div id="newsPanel" >
+            <h3><%= obj.videoTitle %></h3>
+            <p> <%= obj.videoBlurb %></p>
+        </div>
+    </div>
+<% }); %>
+
+
+<% myNoticeArray.forEach(function(obj) { %>
+    <div class="item center">
+        <div id="newsPanel">
+            <h3 id="newsTitle"><%= obj.noticeTitle %></h3>
+            <p id="newsContentPara"><%= obj.noticeContent %></p>
+            <p id="newsAuthor"><i>Written by - <%= obj.noticeAuthor %></i></p>
+        </div>
+    </div>
+
+<% }); %>
+
+

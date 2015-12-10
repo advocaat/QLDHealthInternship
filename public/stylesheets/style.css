@@ -92,16 +92,19 @@ a:visited{
 
 }
 .carousel-caption a{
-  bottom: 0;
-  top: auto;
+  /*bottom: 0;*/
+  /*top: auto;*/
+
   -webkit-text-fill-color: white;
   -webkit-text-stroke-color: black;
 }
-
-#myCarousel{
-  position: relative;
-  margin-bottom: 5%;
-}
+/*.item{*/
+  /*min-height: 300px;*/
+  /*max-height: 300px;*/
+/*}*/
+  .carousel-inner{
+    height:320px;
+  }
 
 #newsTitle{
   margin-left: 3%;
@@ -149,6 +152,7 @@ a:visited{
   padding: 2%;
   color: white;
   margin-bottom: -1%;
+  text-align: center;
 }
 
 #aboutUsImg{
@@ -169,5 +173,11 @@ a:visited{
   max-height: 240px;
   min-width: 320px;
   min-height: 240px;
+  margin-top: 5px;
   object-fit: fill;
+}
+.center{
+  width: 100%;
+  text-align: center;
+
 }

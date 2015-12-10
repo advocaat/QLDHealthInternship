@@ -1,18 +1,12 @@
 <html manifest="/manifest.appcache">
 <head>
     <title>Welcome</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
-
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
 </head>
 <body>
 <div class="container">
@@ -24,6 +18,8 @@
         <input type="text" name='noticeContent' class='form-control' placeholder='Content' required>
         <label class='sr-only'>Notice Author</label>
         <input type='text' name='noticeAuthor' class='form-control' placeholder='Author' required>
+        <label for="noticeFeatured">Notice Featured</label>
+        <input type='checkbox' name='noticeFeatured' class='checkbox-inline' required>
         <button class='btn btn-lg btn-primary btn-block' type='submit'>Upload Notice</button>
 
     </form>
