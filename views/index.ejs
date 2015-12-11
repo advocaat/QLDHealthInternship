@@ -116,9 +116,13 @@
 </button>
 <hr/>
 <center><img src="/images/QLDHealth.jpg" id="AboutUsImg" alt="Qld Health" class="img-thumbnail"></center>
+<button onclick="goBack()">Go Back</button>
+
 </body>
 <script>
-
+    function goBack() {
+        window.history.back();
+    }
     $('#showMenu').click(function(){
         if($('#mainMenu').hasClass('hidden')){
             $('#mainMenu').removeClass('hidden').addClass('visible');

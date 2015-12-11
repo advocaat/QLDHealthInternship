@@ -21,8 +21,30 @@
         <label for="noticeFeatured">Notice Featured</label>
         <input type='checkbox' name='noticeFeatured' class='checkbox-inline' required>
         <button class='btn btn-lg btn-primary btn-block' type='submit'>Upload Notice</button>
-
     </form>
+    <form>
+        <fieldset>
+            <legend>Page Edit</legend>
+            <select id="pageSelect">
+                <% p.forEach(function(obj) { %>
+                    <option> <%= obj %> </option>
+                <%});%>
+
+            </select>
+            <button id="cunter">Press Me</button>
+        </fieldset>
+    </form>
+
 </div>
+<script>
+
+    $('#cunter').click(function(){
+        var urler = 'upload/' + $('#pageSelect').val();
+        window.location.href = urler;
+        return false;
+    })
+
+</script>
 </body>
+
 </html>

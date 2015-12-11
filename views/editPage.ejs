@@ -1,0 +1,28 @@
+<html manifest="/manifest.appcache">
+<head>
+    <title>fuckee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+<form action="/updater" method="POST" class="formUpdater" enctype="multipart/form-data" id="updaterForm">
+    <fieldset>
+<h1><%= dat.pageName %></h1>
+<label for="pageName">NAME </label>
+<textarea name="pageName" id="pageName"><%= dat.pageName %></textarea>
+        <br/>
+<% for(var blockX in dat.pageContent) { %>
+        <label for="<%- blockX%>"><%- blockX%></label>
+        <textarea name="<%- blockX%>" id="<%- blockX%>"><%- dat.pageContent[blockX] %></textarea>
+    <br/>
+<% }; %>
+<button type="submit">Click</button>
+</fieldset>
+    </form>
+</body>
+
+</html>
