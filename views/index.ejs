@@ -43,7 +43,7 @@
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
-            <%- include carosels %>
+            <%- include partials/carosels %>
             <!--<div class="item active">-->
                 <!--<img src="/images/1.jpg" alt="Qld Health">-->
                 <!--<div class="carousel-caption">-->
@@ -137,15 +137,16 @@
     });
     var thing = document.getElementById('mainMenu');
     $('.item').first().addClass('active');
-    console.log("fucnkked")
+    console.log("fucnkked");
 
-    $("#smallFrame")[0].onplay = function(){
-        console.log("jehkjej")
-        $("#myCarousel").carousel('pause');
-    };
-    $("#smallFrame")[0].onpause = function() {
-        $('#myCarousel').carousel('cycle');
-    };
-
+    for(video in vidCountArray) {
+        $(".smallFrame")[video].onplay = function () {
+            console.log("jehkjej");
+            $("#myCarousel").carousel('pause');
+        };
+        $(".smallFrame")[video].onpause = function () {
+            $('#myCarousel').carousel('cycle');
+        };
+    }
 </script>
 </html>

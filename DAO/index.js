@@ -38,23 +38,27 @@ functions.pullTable = function (callback) {
 };
 
 functions.pullPageInfo = function (pageName, callback) {
-
     Page.findOne({'pageName': pageName}, function (err, page) {
         if (err) {
             throw err;
         }
-        var keys = Object.keys(page.pageContent),
-            i, len = keys.length;
+        try {
+            var keys = Object.keys(page.pageContent),
+                i, len = keys.length;
 
-        keys.sort();
-        var pageContent = {};
-        for (i = 0; i < len; i++) {
-            pageContent[keys[i]] = page.pageContent[keys[i]];
+            keys.sort();
+            var pageContent = {};
+            for (i = 0; i < len; i++) {
+                pageContent[keys[i]] = page.pageContent[keys[i]];
+            }
+            page.pageContent = pageContent;
+            callback(page);
+        } catch (err) {
+            callback({'pageName': "none", 'pageTitle': "none", 'pageContent': {}});
         }
-        page.pageContent = pageContent;
-        callback(page);
-    });
+    })
 };
+
 
 
 functions.pullVids = function (callback) {
@@ -71,30 +75,15 @@ functions.pullVids = function (callback) {
 functions.updatePage = function (pageObj) {
     Page.findOne({ pageName: pageObj.pageName }, function (err, doc){
         doc.pageName = pageObj.pageName;
+        doc.pageTitle = pageObj.pageTitle;
         doc.pageContent = pageObj.pageContent;
         doc.save();
     });
-    //Page.update(
-    //    {pageName: pageObj.pageName.trim()},
-    //    {
-    //        $set: {
-    //            "pageName":  pageObj.pageName,
-    //            "pageContent.block1": pageObj.pageContent.block1
-    //        }
-    //    }
-   // );
-console.log("cuntlee "+JSON.stringify(pageObj.pageContent));
+
+
 };
 
-functions.getPage = function(page, callback) {
-    Page.find({pageName: page}, function(err, pageDat){
-        if(err){
-            throw err;
-        }
-        console.log("fart" + pageDat[0].pageName);
-        callback(pageDat[0]);
-    });
-};
+
 
 
 functions.pullFeatured = function (callback) {
@@ -105,6 +94,7 @@ functions.pullFeatured = function (callback) {
         }
         docs.myVidArray = vidDocs;
     });
+
     Notice.find({noticeFeatured: true}, function (err, noteDocs) {
         if (err) {
             throw err;

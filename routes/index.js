@@ -7,26 +7,25 @@ var noticeHandler = require('../control/noticeHandler.js');
 
 
 router.get('/', function (req, res, next) {
-
     DAO.pullFeatured(function (data) {
         res.render('index', data);
     });
-
 });
 
 
 router.get('/notice', function (req, res, next) {
     DAO.pullTable(function (myDocs) {
-        //myDocs = inverter(myDocs);
         res.render('notice', {myNoticeArray: myDocs});
     });
 });
 
 router.get('/trainning', function (req, res, next) {
-    DAO.getPage("Training", function (pageDat) {
+    DAO.pullPageInfo("Training", function (pageDat) {
+        console.log(JSON.stringify(pageDat.pageContent));
         res.render('trainning', {data: pageDat});
     });
 });
+
     router.get('/contact', function (req, res, next) {
         res.render('contact');
 
@@ -34,7 +33,7 @@ router.get('/trainning', function (req, res, next) {
 
 router.get('/about', function (req, res, next) {
 
-    DAO.getPage("About", function (pageDat) {
+    DAO.pullPageInfo("About", function (pageDat) {
 
         console.log("slutPuncher " + pageDat.pageContent.block1);
         res.render('about', {fucker: pageDat});
@@ -43,14 +42,21 @@ router.get('/about', function (req, res, next) {
 
 
 router.get('/upload', function (req, res, next) {
-    res.render('upload', {p: ["Home", "Info", "Educate", "About", "Video", "Notice", "Testicles"]});
+    res.render('upload', {p: ["Home", "Info", "Educate", "About", "Video","Training", "Notice", "Testicles"]});
 });
 
 router.get('/upload/:name', function (req, res, next) {
+
     console.log("fuck cunt  " + req.params.name);
-    DAO.pullPageInfo(req.params.name, function (data) {
-        res.render('editPage', {dat: data});
-    });
+
+       DAO.pullPageInfo(req.params.name, function (data) {
+          if(data.pageName === "none"){
+              res.redirect('/upload');
+          }else {
+              res.render('editPage', {dat: data});
+          }
+       });
+
 });
 
 router.get('/video', function (req, res, next) {
@@ -79,13 +85,15 @@ router.post('/updater', function (req, res) {
         }
         var sender = {};
         sender.pageName = fields.pageName;
+        sender.pageTitle = fields.pageTitle;
         var pageContent = {};
         Object.keys(fields).forEach(function (objer) {
-            if (objer !== "pageName") {
+            if (objer !== "pageName" && objer !== "pageTitle") {
                 pageContent[objer] = fields[objer];
             }
 
-        })
+        });
+
         sender.pageContent = pageContent;
         console.log("docless martinez " + JSON.stringify(sender));
         updateHandler.handleUpdate(sender);

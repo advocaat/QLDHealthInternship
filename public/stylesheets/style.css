@@ -3,6 +3,15 @@ body {
   padding: 0;
   font: 35px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+#cunt{
+  white-space: pre;
+  padding: 3%;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+  white-space: pre-wrap;
+  background-color: white;
+  width: 100%;
+}
+
 .link{
   color: rgb(54, 81, 237);
 }
@@ -168,7 +177,7 @@ a:visited{
   margin-left: 3%;
 }
 
-#smallFrame{
+.smallFrame{
   max-width: 320px;
   max-height: 240px;
   min-width: 320px;
@@ -181,4 +190,28 @@ a:visited{
   text-align: center;
 
 }
+.editBlock{
+  border-bottom: 1px black solid;
+  background-color: lightblue;
 
+}
+textarea, label{
+  display: block;
+}
+
+textarea{
+  width: 80%;
+
+}
+.editBlock{
+   padding-left: 45px;
+}
+#sortable{
+  list-style: none;
+}
+.moveUp{
+  font-size: 16px;
+  margin: 4px;
+  margin-left: -40px;
+  margin-top: -40px;
+}
