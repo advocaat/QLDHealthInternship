@@ -42,13 +42,15 @@ router.get('/about', function (req, res, next) {
 
 
 router.get('/upload', function (req, res, next) {
-    res.render('upload', {p: ["Home", "Info", "Educate", "About", "Video","Training", "Notice", "Testicles"]});
+    console.log("fuckface");
+    DAO.getNameList(function (nameList) {
+        console.log("not An object mate "+nameList.toString());
+        res.render('upload', {p: nameList});
+    });
 });
 
 router.get('/upload/:name', function (req, res, next) {
-
     console.log("fuck cunt  " + req.params.name);
-
        DAO.pullPageInfo(req.params.name, function (data) {
           if(data.pageName === "none"){
               res.redirect('/upload');
@@ -59,12 +61,36 @@ router.get('/upload/:name', function (req, res, next) {
 
 });
 
+router.get('/notice/:name', function(req, res, next){
+    (function(){console.log("dd"+ req.params.name)}());
+   if(req.params.name == "notice");
+    //res.redirect('/notice');
+
+   DAO.pullNotice(req.params.name, function(data){
+
+       res.render('postView', {dat: data});
+   })
+});
+
 router.get('/video', function (req, res, next) {
     DAO.pullVids(function (myDocs) {
         res.render('viewer', {myVidArray: myDocs});
     });
 });
 
+router.post('/newpage', function(req, res, next){
+    console.log('eeeeeeeeeeeeee');
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields) {
+        if (err) {
+            throw err;
+        }
+
+        console.log("addy "+ fields.add);
+        var url = "/upload/" + fields.add;
+        res.redirect(url);
+    });
+});
 
 router.post('/upload', function (req, res) {
     var form = new formidable.IncomingForm();
@@ -100,4 +126,16 @@ router.post('/updater', function (req, res) {
         res.redirect('/');
     })
 });
+
+router.get('/:name', function(req, res, next){
+    try {
+        DAO.pullPageInfo(req.params.name, function (pageDat) {
+            res.render('whatever', {data: pageDat});
+        });
+    }catch(err){
+        res.redirect('/')
+    }
+});
+
+
 module.exports = router;

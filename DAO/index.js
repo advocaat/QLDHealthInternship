@@ -11,20 +11,19 @@ functions.conn = mongoose.connection;
 
 functions.insert = function (tableName, insertObject) {
     var timeslimer = new Date().getTime();
-    if (tableName === "notices") {
-        var newNotice = new Notice();
-        newNotice.noticeTitle = insertObject.noticeTitle;
-        newNotice.noticeContent = insertObject.noticeContent;
-        newNotice.noticeAuthor = insertObject.noticeAuthor;
-        newNotice.noticeTimestamp = timeslimer;
-        newNotice.noticeFeatured = insertObject.noticeFeatured;
-        newNotice.save(function (err) {
-            if (err) {
-                throw err;
-            }
-            console.log("Inserted New Notice");
-        });
-    }
+
+    var newNotice = new Notice();
+    newNotice.noticeTitle = insertObject.noticeTitle;
+    newNotice.noticeContent = insertObject.noticeContent;
+    newNotice.noticeAuthor = insertObject.noticeAuthor;
+    newNotice.noticeTimestamp = timeslimer;
+    newNotice.noticeFeatured = insertObject.noticeFeatured;
+    newNotice.save(function (err) {
+        if (err) {
+            throw err;
+        }
+        console.log("Inserted New Notice");
+    });
 };
 
 functions.pullTable = function (callback) {
@@ -38,11 +37,13 @@ functions.pullTable = function (callback) {
 };
 
 functions.pullPageInfo = function (pageName, callback) {
+
     Page.findOne({'pageName': pageName}, function (err, page) {
-        if (err) {
-            throw err;
-        }
         try {
+            if (err) {
+                throw err;
+            }
+
             var keys = Object.keys(page.pageContent),
                 i, len = keys.length;
 
@@ -54,12 +55,34 @@ functions.pullPageInfo = function (pageName, callback) {
             page.pageContent = pageContent;
             callback(page);
         } catch (err) {
-            callback({'pageName': "none", 'pageTitle': "none", 'pageContent': {}});
+            callback({'pageName': pageName, 'pageTitle': "Bad URL", 'pageContent': {}})
         }
-    })
+    });
+
+    //var page = new Page();
+    //page.name = pageName;
+    //page.save(function(err){
+    //    if(err){
+    //        throw err;
+    //    }
+
+    //});
+
 };
 
 
+functions.pullNotice = function (id, callback) {
+    console.log("id " + id);
+    Notice.findOne({'_id': id}, function (err, data) {
+        if (err) {
+            throw err
+        }
+        console.log("id " + id);
+        callback(data)
+
+    });
+
+};
 
 functions.pullVids = function (callback) {
     var sort = {'_id': -1};
@@ -73,18 +96,41 @@ functions.pullVids = function (callback) {
 };
 
 functions.updatePage = function (pageObj) {
-    Page.findOne({ pageName: pageObj.pageName }, function (err, doc){
-        doc.pageName = pageObj.pageName;
-        doc.pageTitle = pageObj.pageTitle;
-        doc.pageContent = pageObj.pageContent;
-        doc.save();
+
+    Page.findOne({pageName: pageObj.pageName}, function (err, doc) {
+        if (err) {
+            throw err;
+        }
+        try {
+            doc.pageName = pageObj.pageName;
+            doc.pageTitle = pageObj.pageTitle;
+            doc.pageContent = pageObj.pageContent;
+            doc.save();
+        } catch (err) {
+            var page = new Page();
+            page.pageName = pageObj.pageName;
+            page.pageTitle = pageObj.pageTitle;
+            page.pageContent = pageObj.pageContent;
+            page.save(function (err) {
+                throw err;
+            });
+        }
     });
-
-
 };
 
-
-
+functions.getNameList = function(callback){
+    Page.find({}, function(err, names){
+        if(err){
+            throw err;
+        }
+        var nameArray = [];
+        names.forEach(function(name){
+            console.log("fcukskks" + JSON.stringify(name));
+            nameArray.push(name.pageName);
+        });
+        callback(nameArray);
+    });
+}
 
 functions.pullFeatured = function (callback) {
     var docs = {};

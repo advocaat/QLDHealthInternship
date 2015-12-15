@@ -3,13 +3,28 @@ body {
   padding: 0;
   font: 35px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
+
 #cunt{
   white-space: pre;
-  padding: 3%;
-  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin-left: 3%;
+  margin-right: 3%;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
   white-space: pre-wrap;
   background-color: white;
+  padding: 3%;
+  padding-right: 30px;
   width: 100%;
+  margin-bottom: -80px;
+
+}
+#cunt p{
+
+  margin-top: -50px;
+  margin-bottom: 30px;
+}
+#cunt p a{
+  margin-left: -12px;
 }
 
 .link{
@@ -90,6 +105,7 @@ a:visited{
   margin-left: 3%;
   margin-right: 3%;
   padding: 3%;
+
 
 }
 
@@ -214,4 +230,10 @@ textarea{
   margin: 4px;
   margin-left: -40px;
   margin-top: -40px;
+}
+.topBuffer{
+  margin-top: 90px;
+}
+li i{
+ padding-right: 10px;
 }

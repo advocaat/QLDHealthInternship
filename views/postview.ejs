@@ -3,8 +3,7 @@
     <title>Hey There</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
-
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -20,11 +19,10 @@
     <button id="showMenu" type="button" class="btn btn-default" aria-label="Left Align">
         <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
     </button>
-    <h1 id="title">Contact</h1>
-
+    <h1 id="title"><%= dat.noticeTitle %></h1>
 </div>
 
-<body>
+
 <div id="mainMenu" class="hidden">
 
     <ul class="nav nav-stacked">
@@ -38,38 +36,32 @@
     </ul>
 
 </div>
-<div id="contactInfo">
-    <h2>Contact Information</h2>
-    <h4>Contact Numbers</h4>
-    <ul>
-        <li><a href="http://www.google.com" class="link">Clinical and Admin support</a></li>
-        <li><a href="http://www.google.com" class="link">dgkjdfkjdf@health.gov.au</a></li>
-        <li><a href="http://www.google.com" class="link">Training support</a></li>
-        <li><a href="http://www.google.com" class="link">dgkjdfkjdf@health.gov.au</a></li>
-        <li><a href="http://www.google.com" class="link">Digital Hospital</a></li>
-        <li><a href="http://www.google.com" class="link">Leap online</a></li>
-        <li><a href="http://www.google.com" class="link">infoService Centre</a></li>
-    </ul>
+<div class="newsPanel topBuffer">
+    <p id="newsContentPara"><%= dat.noticeContent %></p>
+    <p id="newsAuthor"><i>Written by - <%= dat.noticeAuthor %></i></p>
 </div>
+
+
 
 </body>
 
 <script>
 
-    $('#showMenu').click(function () {
-        if ($('#mainMenu').hasClass('hidden')) {
+    $('#showMenu').click(function(){
+        if($('#mainMenu').hasClass('hidden')){
             $('#mainMenu').removeClass('hidden').addClass('visible');
             $('#mainMenu').addClass('color');
             $('#mainMenu').animate({left: '0'}, 1000);
-        } else {
+        }else{
             $('#mainMenu').animate({left: '-300px'}, 1000);
-            setTimeout(function () {
+            setTimeout( function(){
                 $('#mainMenu').removeClass('visible').addClass('hidden');
             }, 1000);
         }
     });
 
+
 </script>
 
 
-<html/>
+</html>

@@ -2,13 +2,12 @@
 <head>
     <title>QLD Health - Video</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
 
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
 </head>
 <body>
 <div id="header">
@@ -16,22 +15,17 @@
         <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
     </button>
     <h1 id="title">Videos</h1>
-
 </div>
-
-
 <div id="mainMenu" class="hidden">
-
     <ul class="nav nav-stacked">
-        <li><a href="/">Home</a></li>
-        <li><a href="about">About</a></li>
-        <li><a href="notice">News</a></li>
-        <li><a href="video">Videos</a></li>
-        <li><a href="trainning">Training</a></li>
-        <li><a href="index.ejs">Go Live</a></li>
-        <li><a href="contact">Contact/Feedback</a></li>
+        <li><a href="/"><i class="glyphicon glyphicon-home"></i>Home</a></li>
+        <li><a href="about"><i class="glyphicon glyphicon-question-sign"></i>About</a></li>
+        <li><a href="notice"><i class="glyphicon glyphicon-book"></i>News</a></li>
+        <li><a href="video"><i class="glyphicon glyphicon-facetime-video"></i>Videos</a></li>
+        <li><a href="trainning"><i class="glyphicon glyphicon-tent"></i>Training</a></li>
+        <li><a href="index.ejs"><i class="glyphicon glyphicon-glass"></i>Go Live</a></li>
+        <li><a href="contact"><i class="glyphicon glyphicon-comment"></i>Contact/Feedback</a></li>
     </ul>
-
 </div>
 
 <%- include partials/video %>

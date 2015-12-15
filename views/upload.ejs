@@ -35,15 +35,21 @@
         </fieldset>
     </form>
 
+<form action="/newpage" method="POST" enctype="multipart/form-data">
+<fieldset>
+    <legend>Create Page</legend>
+    <label for="add">Page Name</label>
+    <input type="text" name="add" id="add">
+    <button type="submit">Create</button>
+</fieldset>
+</form>
 </div>
 <script>
-
     $('#cunter').click(function(){
         var urler = 'upload/' + $('#pageSelect').val();
         window.location.href = urler;
         return false;
-    })
-
+    });
 </script>
 </body>
 
