@@ -15,14 +15,11 @@
     <button type="button" class="removeBlock"> -</button>
 </div>
 <form id="blockForm" action="/updater" method="POST" class="formUpdater" enctype="multipart/form-data" id="updaterForm">
-
-
     <h1><%= dat.pageName %></h1>
     <label for="pageName">Name: </label>
     <input type="hidden" name="pageName" value="<%= dat.pageName %>">
     <textarea name="pageTitle" id="pageTitle"><%= dat.pageTitle %></textarea>
     <br/>
-
     <script>
         var countee = 0;
         console.log("jere");
@@ -30,17 +27,17 @@
     <ul id="sortable">
 
         <% for(var blockId in dat.pageContent){ %>
-        <% console.log("sss" + blockId) %>
-
+        <%  if(dat.pageContent[blockId].indexOf('<h3>') === -1) {
+            var checked = '';
+        }else{
+            var checked = 'checked';
+        }%>
         <li class="editBlock">
-
+            <input type="checkbox" class="checky" <%= checked %>>
             <label for="<%- blockId %>"><%- blockId %></label>
-
-            <textarea class="draggable" name="<%- blockId %>"
-                      id="<%- blockId %>"><%- dat.pageContent[blockId] %></textarea>
+            <textarea class="draggable" name="<%- blockId %>" id="<%- blockId %>"><%- dat.pageContent[blockId].replace(/<h3>|<\/h3>/gi, '') %></textarea>
             <button type="button" class="moveUp glyphicon glyphicon-arrow-up" return="false"></button>
         </li>
-
         <% }; %>
     </ul>
     <button type="submit">Click</button>
@@ -50,46 +47,6 @@
 <script>
     var len = $('ul li').length;
     countee = len;
-
-    $('.addBlock').click(function () {
-
-            countee += 1;
-            console.log("ccc " + countee);
-            var former = document.getElementById("blockForm");
-            var blocker = document.createElement("textarea");
-            var li = document.createElement('li');
-            var blockName = "block" + (countee);
-            var labeler = document.createElement("label");
-            labeler.appendChild(document.createTextNode(blockName));
-            labeler.for = blockName;
-            blocker.name = blockName;
-            blocker.id = blockName;
-            li.appendChild(labeler);
-            li.appendChild(blocker);
-            $(li).addClass('editBlock');
-            $('ul').append(li);
-        });
-    $('.removeBlock').click(function () {
-           $('li:last').remove();
-        countee -= 1;
-    });
-    $('ul li').delegate('button','click', function(){
-        $('button').bind('input propertychange', function() {
-            $("button").hide();
-
-            if(this.value.length){
-                $("button").show();
-            }
-        });
-        var li = $(this).parent('li');
-        console.log(li.index());
-        var thisCunt = $('textarea')[li.index() + 1].textContent;
-        var thatCunt = $('textarea')[li.index()].textContent;
-        $('textarea')[li.index()].textContent = thisCunt;
-        $('textarea')[li.index()+ 1].textContent = thatCunt;
-    });
-
-
-
 </script>
+<script src="/js/pageEdit.js"></script>
 </html>

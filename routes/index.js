@@ -62,12 +62,11 @@ router.get('/upload/:name', function (req, res, next) {
 });
 
 router.get('/notice/:name', function(req, res, next){
-    (function(){console.log("dd"+ req.params.name)}());
-   if(req.params.name == "notice");
-    //res.redirect('/notice');
 
+   if(req.params.name == "notice") {
+       res.redirect('/notice');
+   }
    DAO.pullNotice(req.params.name, function(data){
-
        res.render('postView', {dat: data});
    })
 });
