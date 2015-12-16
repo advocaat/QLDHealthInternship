@@ -1,5 +1,4 @@
 $('.addBlock').click(function () {
-
     countee += 1;
     console.log("ccc " + countee);
     var former = document.getElementById("blockForm");
@@ -16,6 +15,7 @@ $('.addBlock').click(function () {
     $(li).addClass('editBlock');
     $('ul').append(li);
 });
+
 $('.removeBlock').click(function () {
     $('li:last').remove();
     countee -= 1;
@@ -32,6 +32,7 @@ $('.removeBlock').click(function () {
 //                $('textarea')[li.index() + 1].textContent = text;
 //            }
 //    });
+
 $('ul li').delegate('button','click', function(){
     $('button').bind('input propertychange', function() {
         $("button").hide();
@@ -46,13 +47,11 @@ $('ul li').delegate('button','click', function(){
     var thatCunt = $('textarea')[li.index()].textContent;
     $('textarea')[li.index()].textContent = thisCunt;
     $('textarea')[li.index()+ 1].textContent = thatCunt;
-
 });
 
 $(function() {
     $('#blockForm').submit(function() {
         var len = $('#blockForm ul li').length;
-        console.log("lenny "+ len);
         for(var i = 0; i < len ; i++) {
             testCheckedAndSet(i);
 

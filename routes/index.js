@@ -7,8 +7,12 @@ var noticeHandler = require('../control/noticeHandler.js');
 
 
 router.get('/', function (req, res, next) {
+    var pages;
+    DAO.getNameList(function(names){
+        pages = names;
+    })
     DAO.pullFeatured(function (data) {
-        res.render('index', data);
+        res.render('index', {data: data});
     });
 });
 
@@ -42,9 +46,7 @@ router.get('/about', function (req, res, next) {
 
 
 router.get('/upload', function (req, res, next) {
-    console.log("fuckface");
     DAO.getNameList(function (nameList) {
-        console.log("not An object mate "+nameList.toString());
         res.render('upload', {p: nameList});
     });
 });

@@ -140,14 +140,23 @@ functions.pullFeatured = function (callback) {
         }
         docs.myVidArray = vidDocs;
     });
-
     Notice.find({noticeFeatured: true}, function (err, noteDocs) {
         if (err) {
             throw err;
         }
         docs.myNoticeArray = noteDocs;
+    });
+    Page.find({}, function(err, names) {
+        if (err) {
+            throw err;
+        }
+        docs.nameArray = [];
+        docs.titleArray = [];
+        names.forEach(function (name) {
+            docs.nameArray.push(name.pageName);
+            docs.titleArray.push(name.pageTitle);
+        });
         callback(docs);
     });
-
 };
 module.exports = functions;

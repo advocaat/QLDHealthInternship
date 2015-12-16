@@ -64,21 +64,18 @@
             Quick Reference Guide
         </h3>
 </div>
-<button type="button" id="newsButton" class="btn btn-default" >Training Manuals
-    <span id="directionIcons" class="glyphicon glyphicon-menu-right" aria-hidden="true" ></span>
-</button>
-<button type="button" id="newsButton" class="btn btn-default" >Clinical updates
-    <span id="directionIcons" class="glyphicon glyphicon-menu-right" aria-hidden="true" ></span>
-</button>
-<button type="button" id="newsButton" class="btn btn-default" >Practice Labs
-    <span id="directionIcons" class="glyphicon glyphicon-menu-right" aria-hidden="true" ></span>
-</button>
-<button type="button" id="newsButton" class="btn btn-default" >Practical Activities
-    <span id="directionIcons" class="glyphicon glyphicon-menu-right" aria-hidden="true" ></span>
-</button>
-<button type="button" id="newsButton" class="btn btn-default" style="margin-bottom: 4%;">Support
-    <span id="directionIcons" class="glyphicon glyphicon-menu-right" aria-hidden="true" ></span>
-</button>
+
+<% var countIndex = 0; %>
+<% data.titleArray.forEach(function(i){ %>
+<% var ref = "/" + data.nameArray[countIndex]; %>
+<% countIndex++; %>
+<a id="newsButton" class="btn btn-default" href="<%= ref %>"><%= i %>
+    <span id="directionIcons" class="glyphicon glyphicon-menu-right" aria-hidden="true" ></span></a>
+
+
+<%});%>
+
+
 <hr/>
 <center><img src="/images/QLDHealth.jpg" id="AboutUsImg" alt="Qld Health" class="img-thumbnail"></center>
 <button onclick="goBack()">Go Back</button>

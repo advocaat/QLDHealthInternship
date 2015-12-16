@@ -2,9 +2,8 @@
     var vidCount = -1;
     var vidCountArray = [];
 </script>
-<% myVidArray.forEach(function(obj) { %>
+<% data.myVidArray.forEach(function(obj) { %>
     <script>
-
         vidCount += 1;
         vidCountArray.push(vidCount);
         console.log("video count " + vidCount);
@@ -21,7 +20,7 @@
 <% }); %>
 
 
-<% myNoticeArray.forEach(function(obj) { %>
+<% data.myNoticeArray.forEach(function(obj) { %>
     <div class="item center">
         <div id="newsPanel">
             <h3 id="newsTitle"><%= obj.noticeTitle %></h3>
