@@ -111,9 +111,7 @@ functions.updatePage = function (pageObj) {
             page.pageName = pageObj.pageName;
             page.pageTitle = pageObj.pageTitle;
             page.pageContent = pageObj.pageContent;
-            page.save(function (err) {
-                throw err;
-            });
+            page.save();
         }
     });
 };
@@ -125,7 +123,6 @@ functions.getNameList = function(callback){
         }
         var nameArray = [];
         names.forEach(function(name){
-            console.log("fcukskks" + JSON.stringify(name));
             nameArray.push(name.pageName);
         });
         callback(nameArray);

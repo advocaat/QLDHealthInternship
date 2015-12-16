@@ -5,11 +5,24 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-
-var routes = require('./routes/index');
-
-
 var app = express();
+
+
+var passport = require('passport');
+var expressSession = require('express-session');
+app.use(expressSession({secret: 'mySecretKey', resave: true, saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Using the flash middleware provided by connect-flash
+// to store messages in session and displaying them in templates
+var flash = require('connect-flash');
+app.use(flash());
+
+var initPassport = require('./control/passport/init');
+initPassport(passport);
+
+var routes = require('./routes/index')(passport);
 
 //app.get("/manifest.appcache", function (req, res) {
 //  res.set("Content-Type", "text/cache-manifest");
