@@ -21,22 +21,43 @@
     <textarea name="pageTitle" id="pageTitle"><%= dat.pageTitle %></textarea>
     <br/>
     <script>
+        var someCount = 0;
         var countee = 0;
         console.log("jere");
     </script>
     <ul id="sortable">
 
         <% for(var blockId in dat.pageContent){ %>
-        <%  if(dat.pageContent[blockId].indexOf('<h3>') === -1) {
-            var checked = '';
+        <% var selected; %>
+        <%  if(dat.pageContent[blockId].indexOf('<h3>') === -1 && dat.pageContent[blockId].indexOf('<img') === -1 &&
+                dat.pageContent[blockId].indexOf('<video') === -1 && dat.pageContent[blockId].indexOf('<a') === -1) {
+            selected = 'text';
+        }else if(dat.pageContent[blockId].indexOf('<h3>') === -1 && dat.pageContent[blockId].indexOf('<video') === -1 && dat.pageContent[blockId].indexOf('<a') === -1){
+            selected = 'img';
+        }else if(dat.pageContent[blockId].indexOf('<h3>') === -1 && dat.pageContent[blockId].indexOf('<a') === -1){
+            selected = 'vid';
+        }else if(dat.pageContent[blockId].indexOf('<a') === -1){
+            selected = 'sub';
         }else{
-            var checked = 'checked';
+            selected = 'link'
         }%>
 
         <li class="editBlock">
-            <input type="checkbox" class="checky" <%= checked %>>
+            <select class="options">
+                <option value="text">Text</option>
+                <option value="sub">Sub</option>
+                <option value="img">Image</option>
+                <option value="vid">Video</option>
+                <option value="link">Link</option>
+            </select>
+            <script>
+                $('.editBlock select')[someCount].value = "<%= selected.toString() %>";
+                someCount++;
+            </script>
             <label for="<%- blockId %>"><%- blockId %></label>
-            <textarea class="draggable" name="<%- blockId %>" id="<%- blockId %>"><%- dat.pageContent[blockId].replace(/<h3>|<\/h3>/gi, '') %></textarea>
+            <% var newString = dat.pageContent[blockId].replace(/<h3>|<\/h3>|<img src="\/images\/|"\/>|<video class="smallFrame" class="embed-responsive-item" controls type="video\/mp4" src="\/images\/|"><\/video>|<a href="|" class="link">|<\/a>/gi, '') %>
+            <% console.log("NEW THING " + newString )%>`
+            <textarea class="draggable" name="<%- blockId %>" id="<%- blockId %>"><%- newString %></textarea>
             <button type="button" class="moveUp glyphicon glyphicon-arrow-up" return="false"></button>
         </li>
         <% }; %>
@@ -47,7 +68,7 @@
 </body>
 <script>
     var len = $('ul li').length;
-    countee = len;
+    countee = len
 </script>
 <script src="/js/pageEdit.js"></script>
 </html>

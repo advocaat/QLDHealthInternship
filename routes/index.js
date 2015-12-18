@@ -4,6 +4,9 @@ var formidable = require('formidable');
 var DAO = require('../DAO');
 var updateHandler = require('../control/updateHandler');
 var noticeHandler = require('../control/noticeHandler.js');
+var fs = require('fs');
+var path = require('path');
+
 var isAuthenticated = function (req, res, next) {
     // if user is authenticated in the session, call the next() to call the next request handler
     // Passport adds this method to request object. A middleware is allowed to add properties to
@@ -172,6 +175,23 @@ module.exports = function (passport) {
         } catch (err) {
             res.redirect('/')
         }
+    });
+
+    router.post('/fileupload', function(req, res) {
+        var fstream;
+        req.pipe(req.busboy);
+        req.busboy.on('file', function (fieldname, file, filename) {
+            console.log("Uploading: " + filename);
+            fstream = fs.createWriteStream('c:/Users/Adam/Documents/GitHub/QLDHealthInternship/uploads/' + filename);
+            file.pipe(fstream);
+            fstream.on('close', function () {
+                res.redirect('/');
+            });
+        });
+    });
+
+    router.get('/images/:name', function (req, res) {
+        res.sendFile(path.resolve('../uploads/' + req.params.name));
     });
 
 

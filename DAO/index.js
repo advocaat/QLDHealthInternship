@@ -6,6 +6,7 @@ var Page = require('../models/Page');
 var functions = {};
 
 var mongoURI = "mongodb://localhost/myData";
+//var mongoURI = "mongodb://@ds027509.mongolab.com:27509/qldhealth";
 var dbConnect = mongoose.connect(mongoURI);
 functions.conn = mongoose.connection;
 

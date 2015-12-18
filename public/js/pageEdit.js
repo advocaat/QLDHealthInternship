@@ -4,12 +4,38 @@ $('.addBlock').click(function () {
     var former = document.getElementById("blockForm");
     var blocker = document.createElement("textarea");
     var li = document.createElement('li');
+    li.setAttribute('class','editBlock');
     var blockName = "block" + (countee);
     var labeler = document.createElement("label");
+    var select = document.createElement("select");
+    var option1 = document.createElement('option');
+    option1.innerHTML = "Text";
+    option1.value = "text";
+    var option2 = document.createElement('option');
+    option2.innerHTML = "Sub";
+    option2.value = "sub";
+    var option3 = document.createElement('option');
+    option3.innerHTML = "Image";
+    option3.value = "img";
+    var option4 = document.createElement('option');
+    option4.innerHTML = "Video";
+    option4.value = "vid";
+    var option5 = document.createElement('option');
+    option5.innerHTML = "Link";
+    option5.value = "link";
+    select.appendChild(option1);
+    select.appendChild(option2);
+    select.appendChild(option3);
+    select.appendChild(option4);
+    select.appendChild(option5);
+    select.setAttribute('class', 'options');
+    li.appendChild(select);
+    var scriptly = document.createElement('script');
     labeler.appendChild(document.createTextNode(blockName));
     labeler.for = blockName;
     blocker.name = blockName;
     blocker.id = blockName;
+    li.appendChild(scriptly);
     li.appendChild(labeler);
     li.appendChild(blocker);
     $(li).addClass('editBlock');
@@ -20,18 +46,7 @@ $('.removeBlock').click(function () {
     $('li:last').remove();
     countee -= 1;
 });
-//    $('ul li').delegate('.checky', 'change', function(){
-//        var li = $(this).parent('li');
-//            if(this.checked) {
-//                var myText = $('textarea')[li.index() + 1].textContent;
-//                $('textarea')[li.index() + 1].textContent = '<h3>' + myText + '</h3>';
-//            }else{
-//                var myText = $('textarea')[li.index() + 1].textContent.toString();
-//                console.log(myText);
-//                var text = myText.substring(4, myText.length - 5);
-//                $('textarea')[li.index() + 1].textContent = text;
-//            }
-//    });
+
 
 $('ul li').delegate('button','click', function(){
     $('button').bind('input propertychange', function() {
@@ -60,11 +75,28 @@ $(function() {
     });
 });
 
+
+
 var testCheckedAndSet = function(i){
-    var checked = $('ul li')[i].children[0].checked;
-    if(checked) {
-        var myText = $('ul li')[i].children[2].textContent;
+    var sel = $('ul li')[i].children[0];
+    var val = sel.options[sel.selectedIndex].value;
+    console.log("val " + val)
+    if(val === "sub") {
+        var myText = $('ul li')[i].children[3].textContent;
         console.log("myText"  + myText);
-        $('ul li')[i].children[2].textContent = '<h3>' + myText + '</h3>';
+        $('ul li')[i].children[3].textContent = '<h3>' + myText + '</h3>';
+    }else if(val === "img"){
+        var myText = $('ul li')[i].children[3].textContent;
+        $('ul li')[i].children[3].textContent = '<img src="/images/' + myText + '"/>';
+    }else if(val === "vid"){
+        var myText = $('ul li')[i].children[3].textContent;
+        $('ul li')[i].children[3].textContent = '<video class="smallFrame" class="embed-responsive-item" controls type="video/mp4" src="/images/' + myText + '"></video>';
+    }else if(val === "link"){
+        var myText = $('ul li')[i].children[3].textContent;
+        console.log("hey cunt0 " + myText);
+        var myLinks = myText.split('|');
+        console.log("myLInks " + myLinks[1]);
+        $('ul li')[i].children[3].textContent = '<a href="' + myLinks[0] + '" class="link">' + '|' + myLinks[1] + "|</a>";
+        console.log( "link tag " + $('ul li')[i].children[3].textContent);
     }
 }
