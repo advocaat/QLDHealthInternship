@@ -41,7 +41,7 @@
                     </fieldset>
                 </form>
             </div>
-            <div class="col half">
+            <div class="col quart">
                 <form>
                     <fieldset>
                         <legend>Delete Notice</legend>
@@ -51,6 +51,19 @@
                             <% }); %>
                         </select>
                         <button id="munter">Delete Notice</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col quart">
+                <form>
+                    <fieldset>
+                        <legend>Update Notice</legend>
+                        <select id="noticeUpdate">
+                            <% n.forEach(function(obj) { %>
+                            <option> <%= obj %> </option>
+                            <% }); %>
+                        </select>
+                        <button id="noticeFixer">Update Notice</button>
                     </fieldset>
                 </form>
             </div>
@@ -71,7 +84,7 @@
                     </fieldset>
                 </form>
             </div>
-            <div class="col half">
+            <div class="col quart">
                 <form>
                     <fieldset>
                         <legend>Delete Video</legend>
@@ -81,6 +94,19 @@
                             <% }); %>
                         </select>
                         <button id="punter">Delete Video</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col quart">
+                <form>
+                    <fieldset>
+                        <legend>Update Video</legend>
+                        <select id="videoUpdate">
+                            <% v.forEach(function(obj) { %>
+                            <option> <%= obj %> </option>
+                            <% }); %>
+                        </select>
+                        <button id="videoFixer">Update Video</button>
                     </fieldset>
                 </form>
             </div>
@@ -164,6 +190,17 @@
         window.location.href = urlereeno;
         return false;
     });
+    $('#noticeFixer').click(function () {
+        var urlerano = 'updateNotice/' + $('#noticeUpdate').val();
+        window.location.href = urlerano;
+        return false;
+    });
+    $('#videoFixer').click(function () {
+        var urleretro = 'updateVideo/' + $('#videoUpdate').val();
+        window.location.href = urleretro;
+        return false;
+    });
+
 
     $(document).ready(function () {
 

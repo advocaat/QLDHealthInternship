@@ -81,15 +81,6 @@ functions.pullPageInfo = function (pageName, callback) {
         }
     });
 
-    //var page = new Page();
-    //page.name = pageName;
-    //page.save(function(err){
-    //    if(err){
-    //        throw err;
-    //    }
-
-    //});
-
 };
 
 
@@ -104,6 +95,18 @@ functions.pullNotice = function (id, callback) {
     });
 };
 
+functions.pullNoticeName = function (name, callback) {
+    console.log("id " + name);
+    Notice.findOne({noticeTitle: name}, function (err, data) {
+        if (err) {
+            throw err
+        }
+        console.log("name " + name);
+        callback(data)
+    });
+};
+
+
 functions.pullVids = function (callback) {
     var sort = {'_id': -1};
     Video.find({}, function (err, videos) {
@@ -114,6 +117,49 @@ functions.pullVids = function (callback) {
         callback(videos)
     }).sort(sort);
 };
+
+functions.pullVideoName = function(name ,callback){
+    Video.findOne({videoTitle: name }, function(err, vid){
+        if(err){
+            throw err;
+        }
+        callback(vid);
+    });
+}
+
+
+functions.updateNotice = function(noticeObj){
+    Notice.findOne({_id: noticeObj._id}, function(err, doc){
+        if(err){
+            throw err;
+        }
+        doc.noticeAuthor = noticeObj.noticeAuthor;
+        doc.noticeTitle = noticeObj.noticeTitle;
+        doc.noticeContent = noticeObj.noticeContent;
+        doc.noticeTimestamp = noticeObj.noticeTimestamp;
+        doc.noticeFeatured = noticeObj.noticeFeatured;
+        doc.save();
+
+    });
+
+};
+
+
+functions.updateVideo = function(videoObj){
+    Video.findOne({_id: videoObj._id}, function(err, doc) {
+        if (err) {
+            throw err;
+        }
+        doc.videoTitle = videoObj.videoTitle;
+        doc.videoBlurb = videoObj.videoBlurb;
+        doc.videoURL = videoObj.videoURL;
+        doc.videoFeatured = videoObj.videoFeatured;
+        doc.videoTimestamp = videoObj.videoTimestamp;
+        doc.save();
+    });
+
+};
+
 
 functions.updatePage = function (pageObj) {
 
@@ -165,32 +211,6 @@ functions.getNameList = function(callback){
     });
 }
 
-//functions.getNoticeNames = function(callback){
-//    Page.find({}, function(err, names){
-//        if(err){
-//            throw err;
-//        }
-//        var nameArray = [];
-//        names.forEach(function(name){
-//            nameArray.push(name.noticeTitle);
-//        });
-//        callback(nameArray);
-//    });
-//}
-
-
-//functions.getVideoNames = function(callback){
-//    Page.find({}, function(err, names){
-//        if(err){
-//            throw err;
-//        }
-//        var nameArray = [];
-//        names.forEach(function(name){
-//            nameArray.push(name.videoTitle);
-//        });
-//        callback(nameArray);
-//    });
-//}
 
 functions.getAllNameLists = function(callback){
     var notices = [];

@@ -89,11 +89,11 @@ module.exports = function (passport) {
     router.get('/upload', isAuthenticated, function (req, res) {
         DAO.getAllNameLists(function (nameList, vidList, noticeList) {
             var myfiles = [];
-            fs.readdir('../uploads/', function (err, files) { if (err) throw err;
-                files.forEach( function (file) {
+            fs.readdir('../uploads/', function (err, files) {
+                if (err) throw err;
+                files.forEach(function (file) {
                     myfiles.push(file);
                 });
-                console.log("cunt files " + myfiles);
                 res.render('upload', {p: nameList, v: vidList, n: noticeList, f: myfiles});
             });
 
@@ -198,7 +198,7 @@ module.exports = function (passport) {
         }
     });
 
-    router.post('/fileupload', function(req, res) {
+    router.post('/fileupload', function (req, res) {
         var fstream;
         req.pipe(req.busboy);
         req.busboy.on('file', function (fieldname, file, filename) {
@@ -216,17 +216,53 @@ module.exports = function (passport) {
         res.sendFile(path.resolve('../uploads/' + req.params.name));
     });
 
-    router.get('/del/:name', function(req, res){
+    router.get('/del/:name', function (req, res) {
         DAO.deletePage(req.params.name);
         res.redirect('/upload');
     });
-    router.get('/delnotice/:name', function(req, res){
+    router.get('/delnotice/:name', function (req, res) {
         DAO.deleteNotice(req.params.name);
         res.redirect('/upload');
     });
 
-    router.get('/delvideo/:name', function(req, res){
-        console.log("name "+ req.params.name);
+    router.get('/updateNotice/:name', function (req, res, next) {
+        DAO.pullNoticeName(req.params.name, function (data) {
+            console.log("dat data " + JSON.stringify(data));
+            res.render('updateNotice', {data: data});
+        });
+    });
+
+    router.post('/updateNotice', function (req, res, next) {
+        var form = formidable.IncomingForm();
+        form.parse(req, function (err, fields) {
+            if (err) {
+                throw err;
+            }
+            updateHandler.noticeUpdate(fields);
+            res.redirect('/upload');
+        });
+    });
+
+    router.post('/updateVideo', function(req, res, next){
+       var form = formidable.IncomingForm();
+        form.parse(req, function(err, fields){
+           if(err){
+               throw err;
+           }
+            updateHandler.videoUpdate(fields);
+            res.redirect('/upload');
+        });
+    });
+
+    router.get('/updateVideo/:name', function (req, res, next) {
+        DAO.pullVideoName(req.params.name, function (data) {
+            console.log("dat data " + JSON.stringify(data));
+            res.render('updateVideo', {data: data});
+        });
+    });
+
+    router.get('/delvideo/:name', function (req, res) {
+        console.log("name " + req.params.name);
         DAO.deleteVideo(req.params.name);
         res.redirect('/upload');
     });

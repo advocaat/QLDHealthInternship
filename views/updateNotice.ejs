@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>Welcome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+    <link href="stylesheets/deadSimpleGrid.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<a href="/signout" id="signoutButton" class="btn btn-md btn-danger">Sign out</a>
+
+<h2 class='form-signin-heading'>Notice Update</h2>
+
+<form class='form-signin' action='/updateNotice' method='POST' enctype="multipart/form-data">
+    <fieldset>
+        <legend>Notice Editor</legend>
+        <input type="hidden" name="_id" value="<%= data._id%>">
+        <input type="hidden" name="noticeTimestamp" value="<%= data.noticeTimestamp %>">
+        <input type='text' name='noticeTitle' class='form-control' placeholder='Title' required
+               value="<%= data.noticeTitle %>" autofocus>
+        <input type="text" name='noticeContent' class='form-control' placeholder='Content' value="<%= data.noticeContent %>" required>
+        <input type="text" name='noticeImage' class='form-control' placeholder='Image Name' value="<%= data.noticeImage %>">
+        <input type='text' name='noticeAuthor' class='form-control' placeholder='Author' value="<%= data.noticeAuthor %>" required>
+        <label for="noticeFeatured" >Notice Featured</label>
+        <% var checked %>
+        <% if(data.noticeFeatured){ %>
+        <% checked = "checked" }else{%>
+        <%checked = ""};%>
+        <input type='checkbox' name='noticeFeatured' class='checkbox-inline' <%= checked %>>
+        <button class='btn btn-lg btn-primary btn-block' type='submit'>Upload Notice</button>
+    </fieldset>
+</form>
+</body>
+</html>
