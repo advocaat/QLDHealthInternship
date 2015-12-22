@@ -19,7 +19,11 @@ functions.insertNotice = function (tableName, insertObject) {
     newNotice.noticeAuthor = insertObject.noticeAuthor;
     newNotice.noticeTimestamp = myTime;
     newNotice.noticeFeatured = insertObject.noticeFeatured;
-    newNotice.noticeImage = "/images/" + insertObject.noticeImage;
+    if(insertObject.noticeImage === ""){
+        newNotice.noticeImage === null;
+    }else {
+        newNotice.noticeImage = "/images/" + insertObject.noticeImage;
+    }
     newNotice.save(function (err) {
         if (err) {
             throw err;

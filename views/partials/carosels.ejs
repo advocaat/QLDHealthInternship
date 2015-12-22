@@ -24,6 +24,9 @@
     <div class="item center">
         <div class="newsPanel">
             <hidden class="hidden"><%= obj._id %></hidden>
+            <%if(obj.noticeImage !== null || obj.noticeImage !== "/images/" ){%>
+            <center><img class="smallFrame" src="<%= obj.noticeImage %>"></center>
+            <%};%>
             <h3 class="newsTitle"><%= obj.noticeTitle %></h3>
             <p class="newsContentPara"><%= obj.noticeContent.substring(0,300) %></p>
             <p class="newsAuthor"><i>Written by - <%= obj.noticeAuthor %></i></p>
