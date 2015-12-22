@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var pageSchema = new Schema({
     pageName: String,
     pageTitle: String,
-    pageContent: Object
+    pageContent: Object,
+    footNote: String
 
 });
 

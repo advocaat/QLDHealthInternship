@@ -16,9 +16,11 @@
 </div>
 <form id="blockForm" action="/updater" method="POST" class="formUpdater" enctype="multipart/form-data" id="updaterForm">
     <h1><%= dat.pageName %></h1>
-    <label for="pageName">Name: </label>
+    <label for="pageTitle">Title</label>
     <input type="hidden" name="pageName" value="<%= dat.pageName %>">
     <textarea name="pageTitle" id="pageTitle"><%= dat.pageTitle %></textarea>
+    <label for="footNote">Footer</label>
+    <textarea name="footNote" id="footNote"><%= dat.footNote %></textarea>
     <br/>
     <script>
         var someCount = 0;
@@ -26,22 +28,25 @@
         console.log("jere");
     </script>
     <ul id="sortable">
-
         <% for(var blockId in dat.pageContent){ %>
         <% var selected; %>
         <%  if(dat.pageContent[blockId].indexOf('<h3>') === -1 && dat.pageContent[blockId].indexOf('<img') === -1 &&
-                dat.pageContent[blockId].indexOf('<video') === -1 && dat.pageContent[blockId].indexOf('<a') === -1) {
+                dat.pageContent[blockId].indexOf('<video') === -1 && dat.pageContent[blockId].indexOf('<a') === -1
+                && dat.pageContent[blockId].indexOf('<hr/>') === -1) {
             selected = 'text';
-        }else if(dat.pageContent[blockId].indexOf('<h3>') === -1 && dat.pageContent[blockId].indexOf('<video') === -1 && dat.pageContent[blockId].indexOf('<a') === -1){
+        }else if(dat.pageContent[blockId].indexOf('<h3>') === -1 && dat.pageContent[blockId].indexOf('<video') === -1
+                && dat.pageContent[blockId].indexOf('<a') === -1 && dat.pageContent[blockId].indexOf('<hr/>') === -1){
             selected = 'img';
-        }else if(dat.pageContent[blockId].indexOf('<h3>') === -1 && dat.pageContent[blockId].indexOf('<a') === -1){
+        }else if(dat.pageContent[blockId].indexOf('<h3>') === -1 && dat.pageContent[blockId].indexOf('<a') === -1
+                && dat.pageContent[blockId].indexOf('<hr/>') === -1){
             selected = 'vid';
-        }else if(dat.pageContent[blockId].indexOf('<a') === -1){
+        }else if(dat.pageContent[blockId].indexOf('<a') === -1 && dat.pageContent[blockId].indexOf('<hr/>') === -1){
             selected = 'sub';
+        }else if(dat.pageContent[blockId].indexOf('<hr/>') === -1) {
+            selected = 'link';
         }else{
-            selected = 'link'
+            selected = 'break';
         }%>
-
         <li class="editBlock">
             <select class="options">
                 <option value="text">Text</option>
@@ -49,14 +54,15 @@
                 <option value="img">Image</option>
                 <option value="vid">Video</option>
                 <option value="link">Link</option>
+                <option value="break">Break</option>
             </select>
             <script>
                 $('.editBlock select')[someCount].value = "<%= selected.toString() %>";
                 someCount++;
             </script>
             <label for="<%- blockId %>"><%- blockId %></label>
-            <% var newString = dat.pageContent[blockId].replace(/<h3>|<\/h3>|<img src="\/images\/|"\/>|<video class="smallFrame" class="embed-responsive-item" controls type="video\/mp4" src="\/images\/|"><\/video>|<a href="|" class="link">|<\/a>/gi, '') %>
-            <% console.log("NEW THING " + newString )%>`
+            <% var newString = dat.pageContent[blockId].replace(/<h3>|<\/h3>|<img src="\/images\/|"\/>|<video class="smallFrame" class="embed-responsive-item" controls type="video\/mp4" src="\/images\/|"><\/video>|<a href="|" class="link">|<\/a>|<hr\/>/gi, '') %>
+            <% console.log("NEW THING " + newString )%>
             <textarea class="draggable" name="<%- blockId %>" id="<%- blockId %>"><%- newString %></textarea>
             <button type="button" class="moveUp glyphicon glyphicon-arrow-up" return="false"></button>
         </li>

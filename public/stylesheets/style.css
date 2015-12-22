@@ -6,27 +6,26 @@ body {
 
 
 #cunt{
-  white-space: pre;
   margin-left: 3%;
   margin-right: 3%;
-  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /*font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;*/
   white-space: pre-wrap;
   background-color: white;
   padding: 3%;
   padding-right: 30px;
   width: 100%;
-  margin-bottom: -80px;
+
+  /*margin-bottom: -80px;*/
 
 }
-#cunt p{
+#cunt p, #cunt h3, #cunt hr{
+  margin-top : -80px;
 
-  margin-top: -50px;
-  margin-bottom: 30px;
 }
 #cunt p a{
-  margin-left: -12px;
-}
+  margin-bottom: -17px;
 
+}
 .link{
   color: rgb(54, 81, 237);
 }
@@ -34,12 +33,17 @@ body {
   color: rgb(54, 81, 237);
 }
 
-a:link {
+.barry:link {
   color: rgb(203,223,237);
 }
-a:visited{
+.barry:visited{
   color: rgb(203,223,237);
 
+}
+#signoutButton{
+  margin-top: 1.5%;
+ float: right;
+ color: white;
 }
 
 .color{
@@ -109,13 +113,13 @@ a:visited{
 
 }
 
-#newsPanel {
+.newsPanel {
   margin-left: 3%;
   margin-right: 3%;
   padding-left: 2%;
   padding-right: 2%;
-
 }
+
 .carousel-caption a{
   /*bottom: 0;*/
   /*top: auto;*/
@@ -145,7 +149,6 @@ a:visited{
 #newsContentPara{
   margin-left: 3%;
   margin-right: 3%;
-  maxlength: '50';
 }
 
 #newsAuthor{
@@ -223,9 +226,11 @@ textarea{
 .editBlock{
    padding-left: 45px;
 }
+
 #sortable{
   list-style: none;
 }
+
 .moveUp{
   font-size: 16px;
   margin: 4px;
@@ -237,4 +242,13 @@ textarea{
 }
 li i{
  padding-right: 10px;
+}
+.half{
+  max-width: 50%;
+}
+.indent{
+  padding: 3%;
+}
+.third{
+  max-width: 33.33%;
 }

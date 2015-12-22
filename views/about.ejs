@@ -19,32 +19,21 @@
     <button id="showMenu" type="button" class="btn btn-default" aria-label="Left Align">
         <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
     </button>
-    <h1 id="title"><%- fucker.pageTitle %></h1>
+    <h1 id="title"><%= data.pageTitle %></h1>
 
 </div>
 
 
-<div id="mainMenu" class="hidden">
-
-    <ul class="nav nav-stacked">
-        <li><a href="/"><i class="glyphicon glyphicon-home"></i>Home</a></li>
-        <li><a href="about"><i class="glyphicon glyphicon-question-sign"></i>About</a></li>
-        <li><a href="notice"><i class="glyphicon glyphicon-book"></i>News</a></li>
-        <li><a href="video"><i class="glyphicon glyphicon-facetime-video"></i>Videos</a></li>
-        <li><a href="trainning"><i class="glyphicon glyphicon-tent"></i>Training</a></li>
-        <li><a href="index.ejs"><i class="glyphicon glyphicon-glass"></i>Go Live</a></li>
-        <li><a href="contact"><i class="glyphicon glyphicon-comment"></i>Contact/Feedback</a></li>
-    </ul>
-
-</div>
-
+<% include partials/menu %>
 
     <div id="cunt">
-    <% Object.keys(fucker.pageContent).forEach(function(obj) { %>
-
-        <p><%- fucker.pageContent[obj] %></p>
-
-    <%});%>
+    <% Object.keys(data.pageContent).forEach(function(obj) { %>
+    <%  if( data.pageContent[obj].indexOf('<h3>') === -1){ %>
+        <p><%- data.pageContent[obj] %></p>
+    <%}else{%>
+        <%- data.pageContent[obj] %>
+    <% }%>
+        <%});%>
     </div>
 
 

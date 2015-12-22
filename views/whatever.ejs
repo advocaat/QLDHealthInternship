@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Hey There</title>
+    <title><%- data.pageTitle %></title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
@@ -13,42 +13,35 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!-- Signin CSS -->
-
 </head>
 <body>
 <div id="header">
     <button id="showMenu" type="button" class="btn btn-default" aria-label="Left Align">
         <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
     </button>
-    <h1 id="title"><%= data.pageTitle %></h1>
+    <h1 id="title"><%- data.pageTitle %></h1>
 
 </div>
 
-<body>
-<div id="mainMenu" class="hidden">
 
-    <ul class="nav nav-stacked">
-        <li><a href="/"><i class="glyphicon glyphicon-home"></i>Home</a></li>
-        <li><a href="about"><i class="glyphicon glyphicon-question-sign"></i>About</a></li>
-        <li><a href="notice"><i class="glyphicon glyphicon-book"></i>News</a></li>
-        <li><a href="video"><i class="glyphicon glyphicon-facetime-video"></i>Videos</a></li>
-        <li><a href="trainning"><i class="glyphicon glyphicon-tent"></i>Training</a></li>
-        <li><a href="index.ejs"><i class="glyphicon glyphicon-glass"></i>Go Live</a></li>
-        <li><a href="contact"><i class="glyphicon glyphicon-comment"></i>Contact/Feedback</a></li>
-    </ul>
+<% include partials/menu %>
+
+<div id="cunt">
+
+    <% Object.keys(data.pageContent).forEach(function(obj) { %>
+    <%  if( data.pageContent[obj].indexOf('<h3>') !== -1 || data.pageContent[obj].indexOf('<img') !== -1){ %>
+    <%- data.pageContent[obj] %>
+    <%}else{%>
+    <p><%-data.pageContent[obj] %></p>
+    <% }%>
+    <%});%>
 
 </div>
-
-<% Object.keys(data.pageContent).forEach(function(obj) { %>
-<p><%- data.pageContent[obj] %></p>
-<%});%>
-
 <div id="homePageContainer">
     <center><h3 id="homePageContainerTitle">
-            Training and Devices
+           <%= data.footNote %>
         </h3></center>
 </div>
-
 
 
 <hr/>
@@ -74,4 +67,4 @@
 </script>
 
 
-<html/>
+</html>

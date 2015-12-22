@@ -1,19 +1,14 @@
 
 
 <% myNoticeArray.forEach(function(obj) { %>
-<% console.log("ididiid" + obj._id) %>
+
 <div class="newsPanel">
     <hidden class="hidden"><%= obj._id %></hidden>
     <h3 class="newsTitle"><%= obj.noticeTitle %></h3>
     <p class="newsContentPara"><%= obj.noticeContent.substring(0,300) %> ...</p>
     <p class="newsAuthor"><i>Written by - <%= obj.noticeAuthor %></i></p>
 </div>
-<script>
 
-
-
-
-</script>
 <hr/>
 <% }); %>
 

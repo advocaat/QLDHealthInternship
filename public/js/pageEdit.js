@@ -40,6 +40,7 @@ $('.addBlock').click(function () {
     li.appendChild(blocker);
     $(li).addClass('editBlock');
     $('ul').append(li);
+
 });
 
 $('.removeBlock').click(function () {
@@ -59,25 +60,28 @@ $('ul li').delegate('button','click', function(){
     var li = $(this).parent('li');
     console.log(li.index());
     var thisCunt = $('textarea')[li.index() + 1].textContent;
-    var thatCunt = $('textarea')[li.index()].textContent;
+    var thisTag = $('.options')[li.index() - 1].value;
+    var thatCunt = $('textarea')[li.index()].textContent
+    var thatTag = $('.options')[li.index()].value;
     $('textarea')[li.index()].textContent = thisCunt;
-    $('textarea')[li.index()+ 1].textContent = thatCunt;
+    $('.options')[li.index()].value = thisTag;
+    $('textarea')[li.index() + 1].textContent = thatCunt;
+    $('.options')[li.index() - 1 ].value = thatTag;
 });
 
 $(function() {
     $('#blockForm').submit(function() {
         var len = $('#blockForm ul li').length;
         for(var i = 0; i < len ; i++) {
-            testCheckedAndSet(i);
-
+            testSelectedAndInjectTags(i);
         };
         return true; // return false to cancel form action
     });
 });
 
 
-
-var testCheckedAndSet = function(i){
+var testSelectedAndInjectTags = function(i){
+    console.log("setting for " + $('ul li')[i].children[3].textContent);
     var sel = $('ul li')[i].children[0];
     var val = sel.options[sel.selectedIndex].value;
     console.log("val " + val)
@@ -97,6 +101,7 @@ var testCheckedAndSet = function(i){
         var myLinks = myText.split('|');
         console.log("myLInks " + myLinks[1]);
         $('ul li')[i].children[3].textContent = '<a href="' + myLinks[0] + '" class="link">' + '|' + myLinks[1] + "|</a>";
-        console.log( "link tag " + $('ul li')[i].children[3].textContent);
+    }else if(val === "break"){
+        $('ul li')[i].children[3].textContent = '<hr/>'
     }
 }

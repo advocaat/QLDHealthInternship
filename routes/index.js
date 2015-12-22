@@ -65,29 +65,29 @@ module.exports = function (passport) {
             res.render('notice', {myNoticeArray: myDocs});
         });
     });
-
-    router.get('/trainning', function (req, res, next) {
-        DAO.pullPageInfo("Training", function (pageDat) {
-            res.render('trainning', {data: pageDat});
-        });
-    });
+    //
+    //router.get('/training', function (req, res, next) {
+    //    DAO.pullPageInfo("Training", function (pageDat) {
+    //        res.render('training', {data: pageDat});
+    //    });
+    //});
 
     router.get('/contact', function (req, res, next) {
         res.render('contact');
 
     });
 
-    router.get('/about', function (req, res, next) {
-
-        DAO.pullPageInfo("About", function (pageDat) {
-            res.render('about', {fucker: pageDat});
-        });
-    });
+    //router.get('/about', function (req, res, next) {
+    //
+    //    DAO.pullPageInfo("About", function (pageDat) {
+    //        res.render('about', {data: pageDat});
+    //    });
+    //});
 
 
     router.get('/upload', isAuthenticated, function (req, res) {
-        DAO.getNameList(function (nameList) {
-            res.render('upload', {p: nameList});
+        DAO.getAllNameLists(function (nameList, vidList, noticeList) {
+            res.render('upload', {p: nameList, v: vidList, n: noticeList});
         });
     });
 
@@ -143,6 +143,19 @@ module.exports = function (passport) {
         })
     });
 
+
+    router.post('/uploadVid', function (req, res) {
+        var form = new formidable.IncomingForm();
+        form.parse(req, function (err, fields) {
+            if (err) {
+                throw err;
+            }
+            noticeHandler.handleAddVideo(fields);
+            res.redirect('/');
+        })
+    });
+
+
     router.post('/updater', function (req, res) {
         var form = formidable.IncomingForm();
         form.parse(req, function (err, fields) {
@@ -152,9 +165,10 @@ module.exports = function (passport) {
             var sender = {};
             sender.pageName = fields.pageName;
             sender.pageTitle = fields.pageTitle;
+            sender.footNote = fields.footNote;
             var pageContent = {};
             Object.keys(fields).forEach(function (objer) {
-                if (objer !== "pageName" && objer !== "pageTitle") {
+                if (objer !== "pageName" && objer !== "pageTitle" && objer !== "footNote") {
                     pageContent[objer] = fields[objer];
                 }
 
@@ -163,7 +177,7 @@ module.exports = function (passport) {
             sender.pageContent = pageContent;
             console.log("docless martinez " + JSON.stringify(sender));
             updateHandler.handleUpdate(sender);
-            res.redirect('/');
+            res.redirect('/upload');
         })
     });
 
@@ -173,7 +187,7 @@ module.exports = function (passport) {
                 res.render('whatever', {data: pageDat});
             });
         } catch (err) {
-            res.redirect('/')
+            res.redirect('/');
         }
     });
 
@@ -185,7 +199,7 @@ module.exports = function (passport) {
             fstream = fs.createWriteStream('c:/Users/Adam/Documents/GitHub/QLDHealthInternship/uploads/' + filename);
             file.pipe(fstream);
             fstream.on('close', function () {
-                res.redirect('/');
+                res.redirect('/upload');
             });
         });
     });
@@ -194,6 +208,19 @@ module.exports = function (passport) {
         res.sendFile(path.resolve('../uploads/' + req.params.name));
     });
 
+    router.get('/del/:name', function(req, res){
+        DAO.deletePage(req.params.name);
+        res.redirect('/upload');
+    });
+    router.get('/delnotice/:name', function(req, res){
+        DAO.deleteNotice(req.params.name);
+        res.redirect('/upload');
+    });
 
+    router.get('/delvideo/:name', function(req, res){
+        console.log("name "+ req.params.name);
+        DAO.deleteVideo(req.params.name);
+        res.redirect('/upload');
+    });
     return router;
 };

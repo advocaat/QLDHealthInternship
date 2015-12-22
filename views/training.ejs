@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Hey There</title>
+    <title>Training</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
@@ -24,25 +24,17 @@
 
 </div>
 
-<body>
-<div id="mainMenu" class="hidden">
+<% include partials/menu %>
 
-    <ul class="nav nav-stacked">
-        <li><a href="/"><i class="glyphicon glyphicon-home"></i>Home</a></li>
-        <li><a href="about"><i class="glyphicon glyphicon-question-sign"></i>About</a></li>
-        <li><a href="notice"><i class="glyphicon glyphicon-book"></i>News</a></li>
-        <li><a href="video"><i class="glyphicon glyphicon-facetime-video"></i>Videos</a></li>
-        <li><a href="trainning"><i class="glyphicon glyphicon-tent"></i>Training</a></li>
-        <li><a href="index.ejs"><i class="glyphicon glyphicon-glass"></i>Go Live</a></li>
-        <li><a href="contact"><i class="glyphicon glyphicon-comment"></i>Contact/Feedback</a></li>
-    </ul>
-
-</div>
-
+<div id="cunt">
 <% Object.keys(data.pageContent).forEach(function(obj) { %>
-<p><%- data.pageContent[obj] %></p>
-<%});%>
-
+    <%  if( data.pageContent[obj].indexOf('<h3>') === -1){ %>
+    <p><%- data.pageContent[obj] %></p>
+    <%}else{%>
+    <%- data.pageContent[obj] %>
+    <% }%>
+    <%});%>
+    </div>
 <div id="homePageContainer">
     <center><h3 id="homePageContainerTitle">
             Training and Devices

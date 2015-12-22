@@ -23,19 +23,7 @@
 </div>
 
 
-<div id="mainMenu" class="hidden">
-
-    <ul class="nav nav-stacked">
-        <li><a href="/"><i class="glyphicon glyphicon-home"></i>Home</a></li>
-        <li><a href="about"><i class="glyphicon glyphicon-question-sign"></i>About</a></li>
-        <li><a href="notice"><i class="glyphicon glyphicon-book"></i>News</a></li>
-        <li><a href="video"><i class="glyphicon glyphicon-facetime-video"></i>Videos</a></li>
-        <li><a href="trainning"><i class="glyphicon glyphicon-tent"></i>Training</a></li>
-        <li><a href="index.ejs"><i class="glyphicon glyphicon-glass"></i>Go Live</a></li>
-        <li><a href="contact"><i class="glyphicon glyphicon-comment"></i>Contact/Feedback</a></li>
-    </ul>
-
-</div>
+<% include partials/menu %>
 <div class="newsPanel topBuffer">
     <p id="newsContentPara"><%= dat.noticeContent %></p>
     <p id="newsAuthor"><i>Written by - <%= dat.noticeAuthor %></i></p>

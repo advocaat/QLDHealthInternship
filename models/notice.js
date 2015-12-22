@@ -6,7 +6,8 @@ var noticeSchema = new Schema({
     noticeContent: String,
     noticeAuthor: String,
     noticeTimestamp: Number,
-    noticeFeatured: Boolean
+    noticeFeatured: Boolean,
+    noticeImage: String
 });
 
 var collectionName = "myData";
