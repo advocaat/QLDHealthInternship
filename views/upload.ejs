@@ -13,111 +13,130 @@
 
 
 <a href="/signout" id="signoutButton" class="btn btn-md btn-danger">Sign out</a>
-    <h2 class='form-signin-heading'>Content Managment System</h2>
-<div class="row indent">
-    <div class="col half">
-    <form class='form-signin' action='/upload' method='POST' enctype="multipart/form-data">
-        <fieldset>
-            <legend>Notice Editor</legend>
-            <input type='text' name='noticeTitle' class='form-control' placeholder='Title' required autofocus>
-            <input type="text" name='noticeContent' class='form-control' placeholder='Content' required>
-            <input type="text" name='noticeImage' class='form-control' placeholder='Image Name'>
-            <input type='text' name='noticeAuthor' class='form-control' placeholder='Author' required>
-            <label for="noticeFeatured">Notice Featured</label>
-            <input type='checkbox' name='noticeFeatured' class='checkbox-inline'>
-            <button class='btn btn-lg btn-primary btn-block' type='submit'>Upload Notice</button>
-        </fieldset>
-    </form>
-        </div>
-        <div class="col half">
-    <form>
-        <fieldset>
-            <legend>Delete Notice</legend>
-            <select id="noticeSelect">
-                <% n.forEach(function(obj) { %>
-                <option> <%= obj %> </option>
-                <% }); %>
-            </select>
-            <button id="munter">Press Me</button>
-        </fieldset>
-    </form>
+
+<h2 class='form-signin-heading'>Content Managment System</h2>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#notice">Notice</a></li>
+    <li><a data-toggle="tab" href="#video">Video</a></li>
+    <li><a data-toggle="tab" href="#page">Page Controller</a></li>
+</ul>
+
+
+<div class="tab-content">
+    <div id="notice" class="tab-pane fade in active">
+        <div class="row indent" id="notice">
+            <div class="col half">
+                <form class='form-signin' action='/upload' method='POST' enctype="multipart/form-data">
+                    <fieldset>
+                        <legend>Notice Editor</legend>
+                        <input type='text' name='noticeTitle' class='form-control' placeholder='Title' required
+                               autofocus>
+                        <input type="text" name='noticeContent' class='form-control' placeholder='Content' required>
+                        <input type="text" name='noticeImage' class='form-control' placeholder='Image Name'>
+                        <input type='text' name='noticeAuthor' class='form-control' placeholder='Author' required>
+                        <label for="noticeFeatured">Notice Featured</label>
+                        <input type='checkbox' name='noticeFeatured' class='checkbox-inline'>
+                        <button class='btn btn-lg btn-primary btn-block' type='submit'>Upload Notice</button>
+                    </fieldset>
+                </form>
             </div>
+            <div class="col half">
+                <form>
+                    <fieldset>
+                        <legend>Delete Notice</legend>
+                        <select id="noticeSelect">
+                            <% n.forEach(function(obj) { %>
+                            <option> <%= obj %> </option>
+                            <% }); %>
+                        </select>
+                        <button id="munter">Delete Ntoice</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
-<div class="row indent">
-    <div class="col half">
-    <form  action='/uploadVid' method='POST' enctype="multipart/form-data">
-        <fieldset>
-            <legend>Video Editor</legend>
-            <input type="text" name='videoTitle' class='form-control' placeholder='Title' required>
-            <input type="text" name='videoURL' class='form-control' placeholder='Video Name' required>
-            <input type='text' name='videoBlurb' class='form-control' placeholder='Blurb' required>
-            <label for="videoFeatured">Video Featured</label>
-            <input type='checkbox' name='videoFeatured' class='checkbox-inline'>
-            <button class='btn btn-lg btn-primary btn-block' type='submit'>Upload Video</button>
-        </fieldset>
-    </form>
+    <div id="video" class="tab-pane fade">
+        <div class="row indent" id="video">
+            <div class="col half">
+                <form action='/uploadVid' method='POST' enctype="multipart/form-data">
+                    <fieldset>
+                        <legend>Video Editor</legend>
+                        <input type="text" name='videoTitle' class='form-control' placeholder='Title' required>
+                        <input type="text" name='videoURL' class='form-control' placeholder='Video Name' required>
+                        <input type='text' name='videoBlurb' class='form-control' placeholder='Blurb' required>
+                        <label for="videoFeatured">Video Featured</label>
+                        <input type='checkbox' name='videoFeatured' class='checkbox-inline'>
+                        <button class='btn btn-lg btn-primary btn-block' type='submit'>Upload Video</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col half">
+                <form>
+                    <fieldset>
+                        <legend>Delete Video</legend>
+                        <select id="videoSelect">
+                            <% v.forEach(function(obj) { %>
+                            <option> <%= obj %> </option>
+                            <% }); %>
+                        </select>
+                        <button id="punter">Delete Video</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="col half">
-    <form>
+    <div id="page" class="tab-pane fade">
+        <div class="row indent" id="page">
+            <div class="col third">
+                <form action="/newpage" method="POST" enctype="multipart/form-data">
+                    <fieldset>
+                        <legend>Create Page</legend>
+                        <label for="add">Page Name</label>
+                        <input type="text" name="add" id="add">
+                        <button type="submit">Create</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col third">
+                <form>
+                    <fieldset>
+                        <legend>Page Edit</legend>
+                        <select id="pageSelect">
+                            <% p.forEach(function(obj) { %>
+                            <option> <%= obj %> </option>
+                            <% }); %>
+
+                        </select>
+                        <button id="cunter">Edit Page</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col third">
+                <form>
+                    <fieldset>
+                        <legend>Page Delete</legend>
+                        <select id="pageDelete">
+                            <% p.forEach(function(obj) { %>
+                            <option> <%= obj %> </option>
+                            <% }); %>
+                        </select>
+                        <button id="bunter">Delete Page</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<form method="post" enctype="multipart/form-data" action="/fileupload" class="indent">
+    <legend>Upload File</legend>
     <fieldset>
-    <legend>Delete Video</legend>
-    <select id="videoSelect">
-        <% v.forEach(function(obj) { %>
-        <option> <%= obj %> </option>
-        <% }); %>
-    </select>
-    <button id="punter">Press Me</button>
+        <input type="file" name="file">
+        <br/>
+        <input type="submit" value="Submit">
     </fieldset>
-        </form>
-        </div>
-    </div>
-<div class="row indent">
-    <div class="col third">
-        <form action="/newpage" method="POST" enctype="multipart/form-data">
-            <fieldset>
-                <legend>Create Page</legend>
-                <label for="add">Page Name</label>
-                <input type="text" name="add" id="add">
-                <button type="submit">Create</button>
-            </fieldset>
-        </form>
-    </div>
-    <div class="col third">
-    <form>
-        <fieldset>
-            <legend>Page Edit</legend>
-            <select id="pageSelect">
-                <% p.forEach(function(obj) { %>
-                <option> <%= obj %> </option>
-                <% }); %>
-
-            </select>
-            <button id="cunter">Press Me</button>
-        </fieldset>
-    </form>
-        </div>
-    <div class="col third">
-    <form>
-        <fieldset>
-            <legend>Page Delete</legend>
-            <select id="pageDelete">
-                <% p.forEach(function(obj) { %>
-                <option> <%= obj %> </option>
-                <% }); %>
-            </select>
-            <button id="bunter">Press Me</button>
-        </fieldset>
-    </form>
-</div>
-</div>
-    <form method="post" enctype="multipart/form-data" action="/fileupload">
-        <legend>Upload File</legend>
-        <fieldset>
-            <input type="file" name="file">
-            <input type="submit" value="Submit">
-        </fieldset>
-    </form>
-
+</form>
+<% var filer = f %>
 <script>
     $('#cunter').click(function () {
         var urler = 'upload/' + $('#pageSelect').val();
@@ -125,28 +144,85 @@
         return false
     });
 
-    $('#bunter').click(function(){
-        var delly = confirm("Are you sure you want to delete " +  $('#pageDelete').val() + "?");
-        if(delly) {
+    $('#bunter').click(function () {
+        var delly = confirm("Are you sure you want to delete " + $('#pageDelete').val() + "?");
+        if (delly) {
             var urly = 'del/' + $('#pageDelete').val();
             window.location.href = urly;
             return false;
-        }else{
+        } else {
             alert("Deletion Aborted");
         }
     });
-    $('#munter').click(function(){
+    $('#munter').click(function () {
         var urlerooni = 'delnotice/' + $('#noticeSelect').val();
         window.location.href = urlerooni;
         return false;
     });
-    $('#punter').click(function(){
+    $('#punter').click(function () {
         var urlereeno = 'delvideo/' + $('#videoSelect').val();
         window.location.href = urlereeno;
         return false;
     });
 
+    $(document).ready(function () {
 
+
+        $(".nav-tabs a").click(function () {
+            $(this).tab('show');
+        });
+        $('.nav-tabs a').on('shown.bs.tab', function (event) {
+            var x = $(event.target).text();         // active tab
+            var y = $(event.relatedTarget).text();  // previous tab
+            $(".act span").text(x);
+            $(".prev span").text(y);
+        });
+    });
+
+    var files = "<%- filer %>";
+    console.log(files);
+
+    var cuntFunction = function (path) {
+        var slutSplit = path.split('\\');
+        var lastSlut = slutSplit.length;
+        return slutSplit[lastSlut - 1];
+    };
+
+    var muntFunction = function (things){
+        var chunderSplit = things.split(",");
+        return chunderSplit;
+
+    };
+
+    $('INPUT[type="file"]').change(function () {
+        var sickOnes = cuntFunction(this.value);
+        var ext = this.value.match(/\.(.+)$/)[1];
+        switch (ext) {
+            case 'jpg':
+            case 'jpeg':
+            case 'png':
+            case 'gif':
+            case 'mp4':
+                $('#fileUpload').attr('disabled', false);
+                break;
+            default:
+                alert('This is not an allowed file type.');
+                this.value = '';
+        }
+        var that = this;
+        var munted = muntFunction(files);
+
+        munted.forEach(function (file) {
+            console.log("MUNTED BRA " + file);
+            if (sickOnes === file) {
+                alert("The name already exists");
+                that.value = '';
+
+            }
+
+        })
+
+    });
 </script>
 </body>
 

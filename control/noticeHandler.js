@@ -1,5 +1,4 @@
 var DAO = require('../DAO');
-var gridder = require('../DAO/gridder');
 var updateMani = require('./updateManifest');
 functions = {};
 
@@ -11,6 +10,6 @@ functions.handleAddNotice = function(fields){
 functions.handleAddVideo = function(fields){
   DAO.insertVideo(fields);
   updateMani();
-}
+};
 
 module.exports = functions;

@@ -61,14 +61,14 @@
                 someCount++;
             </script>
             <label for="<%- blockId %>"><%- blockId %></label>
-            <% var newString = dat.pageContent[blockId].replace(/<h3>|<\/h3>|<img src="\/images\/|"\/>|<video class="smallFrame" class="embed-responsive-item" controls type="video\/mp4" src="\/images\/|"><\/video>|<a href="|" class="link">|<\/a>|<hr\/>/gi, '') %>
+            <% var newString = dat.pageContent[blockId].replace(/<h3>|<\/h3>|<center><img class="smallFrame" src="\/images\/|"\/><\/center>|<video class="smallFrame" class="embed-responsive-item" controls type="video\/mp4" src="\/images\/|"><\/video>|<a href="|" class="link">|<\/a>|<hr\/>/gi, '') %>
             <% console.log("NEW THING " + newString )%>
             <textarea class="draggable" name="<%- blockId %>" id="<%- blockId %>"><%- newString %></textarea>
             <button type="button" class="moveUp glyphicon glyphicon-arrow-up" return="false"></button>
         </li>
         <% }; %>
     </ul>
-    <button type="submit">Click</button>
+    <button type="submit">Submit</button>
 </form>
 
 </body>

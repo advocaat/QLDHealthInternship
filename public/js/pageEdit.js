@@ -6,6 +6,9 @@ $('.addBlock').click(function () {
     var li = document.createElement('li');
     li.setAttribute('class','editBlock');
     var blockName = "block" + (countee);
+    var butty = document.createElement('button');
+    butty.type = "button";
+    butty.setAttribute('class', "moveUp glyphicon glyphicon-arrow-up");
     var labeler = document.createElement("label");
     var select = document.createElement("select");
     var option1 = document.createElement('option');
@@ -38,6 +41,7 @@ $('.addBlock').click(function () {
     li.appendChild(scriptly);
     li.appendChild(labeler);
     li.appendChild(blocker);
+    li.appendChild(butty);
     $(li).addClass('editBlock');
     $('ul').append(li);
 
@@ -58,15 +62,15 @@ $('ul li').delegate('button','click', function(){
         }
     });
     var li = $(this).parent('li');
-    console.log(li.index());
-    var thisCunt = $('textarea')[li.index() + 1].textContent;
-    var thisTag = $('.options')[li.index() - 1].value;
-    var thatCunt = $('textarea')[li.index()].textContent
+   var cubt = li.index() + 1;
+    var thisCunt = $('textarea')[cubt +1].textContent;
+    var thisTag = $('.options')[li.index() -1].value;
+    var thatCunt = $('textarea')[cubt].textContent;
     var thatTag = $('.options')[li.index()].value;
-    $('textarea')[li.index()].textContent = thisCunt;
+    $('textarea')[cubt].textContent = thisCunt;
     $('.options')[li.index()].value = thisTag;
-    $('textarea')[li.index() + 1].textContent = thatCunt;
-    $('.options')[li.index() - 1 ].value = thatTag;
+    $('textarea')[cubt+1].textContent = thatCunt;
+    $('.options')[li.index() -1].value = thatTag;
 });
 
 $(function() {
@@ -91,7 +95,7 @@ var testSelectedAndInjectTags = function(i){
         $('ul li')[i].children[3].textContent = '<h3>' + myText + '</h3>';
     }else if(val === "img"){
         var myText = $('ul li')[i].children[3].textContent;
-        $('ul li')[i].children[3].textContent = '<img src="/images/' + myText + '"/>';
+        $('ul li')[i].children[3].textContent = '<center><img class="smallFrame" src="/images/' + myText + '"/></center>';
     }else if(val === "vid"){
         var myText = $('ul li')[i].children[3].textContent;
         $('ul li')[i].children[3].textContent = '<video class="smallFrame" class="embed-responsive-item" controls type="video/mp4" src="/images/' + myText + '"></video>';

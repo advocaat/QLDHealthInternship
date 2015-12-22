@@ -4,6 +4,7 @@ var formidable = require('formidable');
 var DAO = require('../DAO');
 var updateHandler = require('../control/updateHandler');
 var noticeHandler = require('../control/noticeHandler.js');
+var updateMani = require('../control/updateManifest');
 var fs = require('fs');
 var path = require('path');
 
@@ -53,7 +54,7 @@ module.exports = function (passport) {
         var pages;
         DAO.getNameList(function (names) {
             pages = names;
-        })
+        });
         DAO.pullFeatured(function (data) {
             res.render('index', {data: data});
         });
@@ -72,10 +73,10 @@ module.exports = function (passport) {
     //    });
     //});
 
-    router.get('/contact', function (req, res, next) {
-        res.render('contact');
-
-    });
+    //router.get('/contact', function (req, res, next) {
+    //    res.render('contact');
+    //
+    //});
 
     //router.get('/about', function (req, res, next) {
     //
@@ -87,7 +88,15 @@ module.exports = function (passport) {
 
     router.get('/upload', isAuthenticated, function (req, res) {
         DAO.getAllNameLists(function (nameList, vidList, noticeList) {
-            res.render('upload', {p: nameList, v: vidList, n: noticeList});
+            var myfiles = [];
+            fs.readdir('../uploads/', function (err, files) { if (err) throw err;
+                files.forEach( function (file) {
+                    myfiles.push(file);
+                });
+                console.log("cunt files " + myfiles);
+                res.render('upload', {p: nameList, v: vidList, n: noticeList, f: myfiles});
+            });
+
         });
     });
 
@@ -119,14 +128,12 @@ module.exports = function (passport) {
     });
 
     router.post('/newpage', function (req, res, next) {
-        console.log('eeeeeeeeeeeeee');
         var form = new formidable.IncomingForm();
         form.parse(req, function (err, fields) {
             if (err) {
                 throw err;
             }
 
-            console.log("addy " + fields.add);
             var url = "/upload/" + fields.add;
             res.redirect(url);
         });
@@ -177,7 +184,7 @@ module.exports = function (passport) {
             sender.pageContent = pageContent;
             console.log("docless martinez " + JSON.stringify(sender));
             updateHandler.handleUpdate(sender);
-            res.redirect('/upload');
+            res.redirect('/upload/' + fields.pageName);
         })
     });
 
@@ -199,6 +206,7 @@ module.exports = function (passport) {
             fstream = fs.createWriteStream('c:/Users/Adam/Documents/GitHub/QLDHealthInternship/uploads/' + filename);
             file.pipe(fstream);
             fstream.on('close', function () {
+                updateMani();
                 res.redirect('/upload');
             });
         });

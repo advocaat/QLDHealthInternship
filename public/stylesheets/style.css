@@ -2,6 +2,7 @@
 body {
   padding: 0;
   font: 35px "Lucida Grande", Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
 }
 
 
@@ -14,16 +15,23 @@ body {
   padding: 3%;
   padding-right: 30px;
   width: 100%;
-
-  /*margin-bottom: -80px;*/
+  margin-bottom: -9px;
 
 }
-#cunt p, #cunt h3, #cunt hr{
+#cunt p, #cunt h3, #cunt hr, #cunt center{
   margin-top : -80px;
 
 }
 #cunt p a{
   margin-bottom: -17px;
+
+}
+#cunt hr{
+  margin-bottom: 100px;
+
+}
+#cunt center{
+
 
 }
 .link{
@@ -172,7 +180,7 @@ body {
 #homePageContainer{
   width: 100%;
   height: 9%;
-  margin-top: 5%;
+  margin-top: -30px;
   background-color: rgb(31, 73, 125);
   position: relative;
 }
